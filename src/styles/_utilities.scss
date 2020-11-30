@@ -1,0 +1,27 @@
+@import './config';
+
+.container{
+    max-width: $website-width;
+    margin: auto;
+}
+
+input[type=text]{
+    outline: none;
+}
+
+.py{
+    &-1{
+        padding: 1rem 0;
+    } 
+    &-15{
+        padding: 1.5rem 0;
+    } 
+    &-2{
+        padding: 2rem 0;
+    } 
+    &-2{
+        padding: 3rem 0;
+    } 
+    
+
+}

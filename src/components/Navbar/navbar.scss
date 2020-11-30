@@ -1,0 +1,38 @@
+@import '../../styles';
+
+#main-nav{
+    background-color: $dark-color;
+    color: set-text-color($dark-color);
+
+    >.container{
+        >.nav-content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .search{
+                >.search-text{
+                    height: 2.5rem;
+                    width: 22rem;
+                    border: none;
+                    border-radius: 20px;
+                    padding-right: 40px;
+                    padding-left: 1rem;
+                    
+                }
+                >button{
+                    background-color: $secondary-color;
+                    border: none;
+                    border-radius: 20px;
+                    height: 2.5rem;
+                    width: 70px;
+                    margin-left: -40px;
+                    >i{
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
