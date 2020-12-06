@@ -1,0 +1,12 @@
+@import '../../../styles';
+
+#home-main{
+    background: $third-color;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .slider-container{
+        width: 100%;
+    }
+}

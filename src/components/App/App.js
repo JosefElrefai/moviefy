@@ -3,7 +3,10 @@ import axios from "axios";
 import { connect } from 'react-redux';
 
 import { fetchSongs } from '../../actions';
-import Header from '../Header/Header';
+import HomePage from '../HomePage/HomePage';
+import ItemsSlider from '../itemSliderComponents/ItemsSlider';
+import styled from '@emotion/styled';
+import '../../index.scss'
 
 class App  extends React.Component {
 
@@ -13,14 +16,23 @@ class App  extends React.Component {
     }
 
     render(){
+        console.log(process.env.REACT_APP_API_KEY);
         return (
             <Fragment>
-                <Header />
+                <HomePage />
             </Fragment>
     
         );
     }
 };
+
+const Cont = styled.div`
+    height: 100vh;
+    width: 100%;
+    background: #161130;
+    display: flex;
+    align-items: center;
+`;
 
 const mapStateToProps = (state) => {
     return { allSongs: state.songs};

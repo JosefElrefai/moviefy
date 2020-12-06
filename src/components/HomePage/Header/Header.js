@@ -2,8 +2,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
 
-import Navbar from '../Navbar/Navbar';
-import Slider from '../sliderComponents/Slider';
+import Navbar from '../../Navbar/Navbar';
+import Slider from './sliderComponents/Slider';
 import { connect } from 'react-redux';
 
 class Header extends React.Component{

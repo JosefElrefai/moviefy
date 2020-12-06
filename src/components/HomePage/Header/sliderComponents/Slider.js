@@ -27,7 +27,7 @@ class Slider extends React.Component{
     }
 
     componentDidMount = () => {
-        setInterval(this.nextSlide, 3000);
+        setInterval(this.nextSlide, 10000);
         this.tra = this.state.transition;
     }
 
@@ -68,7 +68,7 @@ const sliderCSS = css`
     background-color: #333; 
     position: relative;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
 `;

@@ -1,0 +1,1 @@
+export const GET_TOP_RATED = 'GET_TOP_RATED';
