@@ -22,11 +22,16 @@ const ItemsSlider = (props) => {
     }
 
     return (
+
         <div css={containerCSS}>
             <i className="fas fa-chevron-left fa-3x" css={leftChevronCSS} onClick={() => translateRight()} ></i>
             
             <Slider height={props.height} width={props.width} >
-                <ItemsSliderContent count={props.numberOfSlides} translateNow={translateNow} clearTranslateNow={() => clearTranslateNow()} />
+                <ItemsSliderContent 
+                    count={props.numberOfSlides}
+                    ImgsFrom={props.imgsFrom} 
+                    translateNow={translateNow} 
+                    clearTranslateNow={() => clearTranslateNow()} />
             </Slider>
 
             <i className="fas fa-chevron-right fa-3x" css={rightChevronCSS} onClick={() => translateLeft()} ></i>

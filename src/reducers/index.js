@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { moviesUpcoming, moviesTopRated, moviesPopular, movieGenres } from './movies';
+
 
 const headerPics = (oldSongsList = [  //last image must be the same as first!
     'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
@@ -13,6 +15,10 @@ const headerPics = (oldSongsList = [  //last image must be the same as first!
 };
 
 export default combineReducers({
-        headerPics: headerPics
+        headerPics,
+        moviesTopRated,
+        moviesUpcoming,
+        moviesPopular,
+        movieGenres
 });
 

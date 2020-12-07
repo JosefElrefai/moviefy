@@ -1,15 +1,35 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import Header from './Header/Header';
 import HomeMain from './HomeMain/HomeMain';
+import { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres } from '../../actions/fetchMovies';
 
-const HomePage = () => {
-    return (
-        <Fragment>
-            <Header />
-            <HomeMain />
-        </Fragment>
-    );
+class HomePage extends React.Component {    
+
+
+    componentDidMount(){
+        this.props.fetchMoviesTopRated();
+        this.props.fetchMoviesUpcoming();
+        this.props.fetchMoviesPopular();
+        this.props.fetchMoviesGenres();
+    }
+
+    render(){
+       if(this.props.moviesTopRated.length === 0){
+           return null;
+       }
+        return (
+            <Fragment>
+                <Header />
+                <HomeMain />
+            </Fragment>
+        );
+    }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+    return { moviesTopRated: state.moviesTopRated };
+}
+
+export default connect(mapStateToProps, { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres } )(HomePage);
