@@ -62,7 +62,7 @@ const Slider = styled.div`
 
 
 const rightChevronCSS = css`
-    color: white;
+    color:  #01b4e4;
     margin-bottom: 3rem;
     margin-left: 1.5rem;
     &:hover{
@@ -72,7 +72,7 @@ const rightChevronCSS = css`
 `;
 
 const leftChevronCSS = css`
-    color: white;
+    color:  #01b4e4;
     margin-bottom: 3rem;
     margin-right: 1.5rem;
     &:hover{

@@ -1,0 +1,60 @@
+@import '../../styles/';
+
+#footer{
+    background: #131517;
+    color: set-text-color(#131517);
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >.container{
+        width: 70%;
+        height: 65%;
+        >.footer-content{
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            >.me-info{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                >.info-titles{
+                    >h2{
+                        font-family: $tertiary-font;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        letter-spacing: 3px;
+                        font-size: 1.5rem;
+                    }
+                    display: flex;
+                    align-items: center;
+                    gap: 2rem;
+                }
+            }
+
+            >.movieDB-info{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+
+                >.socials{
+                    display: flex;
+                    gap: 2rem;
+                    >a{
+                        text-decoration: none;
+                        >i{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            color: $secondary-color;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

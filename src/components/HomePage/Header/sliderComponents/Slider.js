@@ -26,9 +26,22 @@ class Slider extends React.Component{
         });
     }
 
+    handleresize = () => {
+        this.tra = 0;
+        this.setState({translate: this.getWidth() * this.state.activeIndex});
+        this.tra = this.state.transition;
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleresize);
+
+    }
+
     componentDidMount = () => {
         setInterval(this.nextSlide, 10000);
         this.tra = this.state.transition;
+
+        window.addEventListener('resize',() => this.handleresize())
     }
 
     componentDidUpdate(){

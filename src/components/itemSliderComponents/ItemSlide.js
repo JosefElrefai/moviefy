@@ -54,7 +54,7 @@ const movieCSS = css`
     color: white;
     transition: transform .2s;
     box-shadow: 3px 3px 3px #161130;
-    opacity: .8;
+    opacity: .7;
     h4{
         margin: .5rem 0 .2rem;
     }

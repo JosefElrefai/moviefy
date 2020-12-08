@@ -4,29 +4,31 @@
     background: $third-color;
     color: set-text-color($third-color);
     padding: 6rem 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-size: small;
 
-    .slider-title{
-        width: 80%;
-        padding: 2rem 0 .6rem;
-        padding-left: 2rem;
-        text-align: left;
-        text-transform: uppercase;
-        font-family: $primary-font;
-        letter-spacing: 3px;
-        >.h2{
-            font-weight: bold;
+    >.container{
+        max-width: 1500px;
+        >.slider-title{
+            width: 80%;
+            padding: 2rem 0 .6rem;
+            margin: 0 auto;
+            padding-left: 2rem;
+            text-align: left;
+            text-transform: uppercase;
+            font-family: $primary-font;
+            letter-spacing: 3px;
+            >.h2{
+                font-weight: bold;
+            }
         }
+    
+        >.faded-line{
+            width: 100%;
+            height: 3px;
+            background: radial-gradient( rgba(255,255,255, 0.7) 0%, $third-color 50%);
+            margin-bottom: 3rem;
+        }
+        
     }
 
-    .faded-line{
-        width: 100%;
-        height: 3px;
-        background: radial-gradient( rgba(255,255,255, 0.7) 0%, $third-color 50%);
-        margin-bottom: 3rem;
-    }
 }

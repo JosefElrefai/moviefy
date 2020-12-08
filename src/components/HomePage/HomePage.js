@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from './Header/Header';
 import HomeMain from './HomeMain/HomeMain';
+import Footer from '../Footer/Footer';
 import { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres } from '../../actions/fetchMovies';
 
 class HomePage extends React.Component {    
@@ -23,6 +24,7 @@ class HomePage extends React.Component {
             <Fragment>
                 <Header />
                 <HomeMain />
+                <Footer />
             </Fragment>
         );
     }
@@ -32,4 +34,5 @@ const mapStateToProps = (state) => {
     return { moviesTopRated: state.moviesTopRated };
 }
 
-export default connect(mapStateToProps, { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres } )(HomePage);
+
+export default connect(mapStateToProps, { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres })(HomePage);
