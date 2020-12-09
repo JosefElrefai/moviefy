@@ -12,23 +12,29 @@ class HomeMain extends React.Component {
             <div id="home-main">
                  <div className="container">
 
-                    <div className="slider-title">
-                        <h2 >Upcoming</h2>
+                    <div className="slider-content"  data-aos="fade">
+                        <div className="slider-title" >
+                            <h2 >Upcoming</h2>
+                        </div>
+                        <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="Upcoming" />
+                        <div className="faded-line" ></div>
                     </div>
-                    <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="Upcoming" />
-                    <div className="faded-line" ></div>
                     
-                    <div  className="slider-title">
-                        <h2>Popular</h2>
+                    <div className="slider-content" data-aos="fade">
+                        <div  className="slider-title" >
+                            <h2>Popular</h2>
+                        </div>
+                        <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="Popular" />
+                        <div className="faded-line" ></div>
                     </div>
-                    <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="Popular" />
-                    <div className="faded-line" ></div>
 
-                    <div  className="slider-title">
-                        <h2>Top rated</h2>
+                    <div className="slider-content" data-aos="fade">
+                        <div  className="slider-title" >
+                            <h2>Top rated</h2>
+                        </div>
+                        <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="TopRated"  />
+                        <div className="faded-line" ></div>
                     </div>
-                    <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="TopRated" />
-                    <div className="faded-line" ></div>
                     
                  </div>
             </div>

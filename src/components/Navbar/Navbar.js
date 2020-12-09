@@ -2,7 +2,6 @@ import React from 'react';
 import './navbar.scss';
 
 class Navbar extends React.Component {
-
     render() {
         return (
             <nav id="main-nav" className="py-1" >
@@ -10,7 +9,7 @@ class Navbar extends React.Component {
                     <div className="nav-content">
                         <div className="left-icons"><a href="#" className="main-logo"></a></div>
                         
-                        <div className="search-container" >
+                        <div className="search-container" data-aos="bounce">
                             <form className="search">
                                 <input type="text" placeholder="Search..." className="search-text"></input>
                                 <button type="submit"><i className="fas fa-search fa-lg" ></i></button>

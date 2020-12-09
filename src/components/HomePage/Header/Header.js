@@ -28,16 +28,16 @@ class Header extends React.Component{
 
 
 const EmptyDiv = styled.div`
-    height: 0rem;
-    position: absolute;
-    top: 0;
+    height: 4.6rem;
 `;
 
 const headerCSS = css`
     height: 100vh;
     display: flex;
     flex-direction: column;
-
+    position: relative;
+    top: -4.6rem;
+    margin-bottom: -4.6rem;
 `;
 
 const mapStateToProps = (state) => {
