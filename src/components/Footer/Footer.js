@@ -31,15 +31,15 @@ const Footer = () => {
                         </div>
                         <div className="socials">
                             <a href="https://twitter.com/themoviedb" target="_blank" data-aos="fade-up" data-aos-delay="300">
-                                <i className="fab fa-twitter fa-2x"></i>
+                                <i className="fab fa-twitter fa-lg"></i>
                             </a>
 
                             <a href="https://www.facebook.com/themoviedb" target="_blank" data-aos="fade-up" data-aos-delay="600">
-                                <i className="fab fa-facebook fa-2x"></i>
+                                <i className="fab fa-facebook fa-lg"></i>
                             </a>
 
                             <a href="https://twitter.com/themoviedb" target="_blank" data-aos="fade-up" data-aos-delay="900">
-                                <i className="fab fa-twitter fa-2x"></i>
+                                <i className="fab fa-twitter fa-lg"></i>
                             </a>
                         </div>
                     </div>

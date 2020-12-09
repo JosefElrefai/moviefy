@@ -8,14 +8,21 @@ class Navbar extends React.Component {
             <nav id="main-nav" className="py-1" >
                 <div className="container">
                     <div className="nav-content">
-                        <div><i className="fas fa-ad fa-2x" ></i></div>
+                        <div className="left-icons"><a href="#" className="main-logo"></a></div>
+                        
                         <div className="search-container" >
                             <form className="search">
                                 <input type="text" placeholder="Search..." className="search-text"></input>
                                 <button type="submit"><i className="fas fa-search fa-lg" ></i></button>
                             </form>
                         </div>
-                        <div><i className="fas fa-home fa-2x" ></i></div>
+
+                        <div className="right-icons">
+                            <a href="#" className="home-icon"></a> {/* Make Link*/}
+                            <a href="#" className="user-icon"></a>
+                            <a href="#" className="explore-icon"></a>
+                        </div>
+
                     </div>
                 </div>
             </nav>

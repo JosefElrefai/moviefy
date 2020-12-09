@@ -41,15 +41,17 @@
 
                 >.socials{
                     display: flex;
-                    gap: 2rem;
+                    justify-content: space-between;
                     >a{
                         text-decoration: none;
                         >i{
                             display: flex;
                             justify-content: center;
                             align-items: center;
-
-                            color: $secondary-color;
+                            background: linear-gradient(to right, #90cea1, #01b4e4);
+                            height: 2.5rem;
+                            width: 2.5rem;
+                            color: #131517;
                             border-radius: 50%;
                         }
                     }

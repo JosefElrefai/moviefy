@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 import Navbar from '../../Navbar/Navbar';
 import Slider from './sliderComponents/Slider';
@@ -8,16 +9,29 @@ import { connect } from 'react-redux';
 
 class Header extends React.Component{
 
+
+
     render(){
         return (
-            <header css={headerCSS} >
+            <Fragment>
                 <Navbar />
-                <Slider slides={this.props.mainImgs}  css={css`flex-grow: 1;`} />
-            </header>
+                <header css={headerCSS} >
+                    <EmptyDiv />
+                    <Slider slides={this.props.mainImgs}  css={css`flex-grow: 1;`} />
+                </header>
+
+            </Fragment>
         );
     }
 }
 
+
+
+const EmptyDiv = styled.div`
+    height: 0rem;
+    position: absolute;
+    top: 0;
+`;
 
 const headerCSS = css`
     height: 100vh;

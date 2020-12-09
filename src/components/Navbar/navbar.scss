@@ -1,17 +1,39 @@
 @import '../../styles';
 
 #main-nav{
+    position: sticky;
+    top: 0px;
+    z-index: 5;
     background-color: $dark-color;
     color: set-text-color($dark-color);
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     >.container{
+        max-width: 1500px;
         >.nav-content{
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 2.5rem;
+
+            .left-icons{
+                display: flex;
+                height: 2.5rem;
+                width: 10rem;
+                align-items: center;
+                .main-logo{
+                    width: 3.3rem;
+                    height: 3.3rem;
+                    background: url('./icons/clapperboard.svg');
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                }
+            }
 
             .search{
                 >.search-text{
+                    margin: 0 auto;
                     height: 2.5rem;
                     width: 22rem;
                     border: none;
@@ -32,6 +54,45 @@
                     }
                 }
             }
+
+
+            .right-icons{
+                display: flex;
+                align-items: center;
+                height: 2rem;
+                width: 10rem;
+                gap: 2rem;
+
+
+
+                .home-icon{
+                    width: 2rem;
+                    height: 100%;
+                    background: url('./icons/home.svg');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                }
+
+                .user-icon{
+                    width: 2rem;
+                    height: 100%;
+                    background: url('./icons/user.svg');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                }
+
+                .explore-icon{
+                    width: 2rem;
+                    height: 100%;
+                    background: url('./icons/explore.svg');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                }
+
+
+            }    
+
+            
         }
     }
 }
