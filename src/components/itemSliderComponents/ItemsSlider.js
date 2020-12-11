@@ -7,7 +7,7 @@ import ItemsSliderContent from './ItemsSliderContent';
 const ItemsSlider = (props) => {
 
     const [translateNow, setTranslateNow] = useState({left: false, right: false});
-
+    const [maxVisibleSlides, setMaxVisibleSlides] = useState(props.numberOfSlides);
 
     const clearTranslateNow = () => {
         setTranslateNow({left: false, right: false});
@@ -21,6 +21,10 @@ const ItemsSlider = (props) => {
         setTranslateNow({left: true});
     }
 
+    const changeSlidesOnScreen = (number) => {
+       setMaxVisibleSlides(number);
+    }
+
     return (
 
         <div css={containerCSS}>
@@ -28,10 +32,12 @@ const ItemsSlider = (props) => {
             
             <Slider height={props.height} width={props.width} >
                 <ItemsSliderContent 
-                    count={props.numberOfSlides}
+                    count={maxVisibleSlides}
                     ImgsFrom={props.imgsFrom} 
                     translateNow={translateNow} 
-                    clearTranslateNow={() => clearTranslateNow()} />
+                    clearTranslateNow={() => clearTranslateNow()} 
+                    changeSlidesOnScreen={(num) => changeSlidesOnScreen(num)}
+                    />
             </Slider>
 
             <i className="fas fa-chevron-right fa-3x" css={rightChevronCSS} onClick={() => translateLeft()} ></i>

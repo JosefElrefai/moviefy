@@ -36,8 +36,8 @@ const Footer = () => {
                                 <i className="fab fa-facebook fa-lg"></i>
                             </a>
 
-                            <a href="https://twitter.com/themoviedb" target="_blank" data-aos="fade-up" data-aos-delay="2900">
-                                <i className="fab fa-twitter fa-lg"></i>
+                            <a href="https://www.themoviedb.org/documentation/api" target="_blank" data-aos="fade-up" data-aos-delay="2900">
+                                <i className="fas fa-code fa-lg"></i>
                             </a>
                         </div>
                     </div>

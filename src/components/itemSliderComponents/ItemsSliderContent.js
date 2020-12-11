@@ -66,8 +66,8 @@ class itemsSliderContent extends React.Component {
 
     renderVisible = () => {
         const { count } = this.props;
+
         const { position } = this.state;
-        
         
     
         const moviesOnScreen = this.props.totalMovies.slice(position - 1, position + count -1);
