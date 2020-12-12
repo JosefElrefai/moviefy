@@ -21,7 +21,7 @@ const ItemsSlider = (props) => {
         setTranslateNow({left: true});
     }
 
-    const changeSlidesOnScreen = (number) => {
+    const changeVisibleSlides = (number) => {
        setMaxVisibleSlides(number);
     }
 
@@ -36,7 +36,7 @@ const ItemsSlider = (props) => {
                     ImgsFrom={props.imgsFrom} 
                     translateNow={translateNow} 
                     clearTranslateNow={() => clearTranslateNow()} 
-                    changeSlidesOnScreen={(num) => changeSlidesOnScreen(num)}
+                    changeVisibleSlides={(num) => changeVisibleSlides(num)}
                     />
             </Slider>
 

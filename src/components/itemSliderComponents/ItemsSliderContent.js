@@ -17,6 +17,7 @@ class itemsSliderContent extends React.Component {
         this.translateX = 0; //pixels to translate
         this.translateTime = .2;
         this.id = Math.floor(Math.random() * 1000);
+        this.maxVisible = this.props.count;
     }
 
     
@@ -40,9 +41,42 @@ class itemsSliderContent extends React.Component {
             this.translateTime = .3;
         }
     }
+
+    handleRezise = () => {
+        const { count } = this.props;
+        if(window.innerWidth > 1500 ){
+            this.props.changeVisibleSlides(this.maxVisible);
+        } else {
+            if(window.innerWidth < 591){
+                this.props.changeVisibleSlides(2);
+                return null;
+            }
+            if(window.innerWidth < 788){
+                this.props.changeVisibleSlides(3);
+                return null;
+            }
+            if(window.innerWidth < 985){
+                this.props.changeVisibleSlides(4);
+                return null;
+            }
+            if(window.innerWidth < 1181){
+                this.props.changeVisibleSlides(5);
+                return null;
+            }
+            if(window.innerWidth < 1379){
+                this.props.changeVisibleSlides(6);
+                return null;
+            }
+            if(window.innerWidth <= 1500){
+                this.props.changeVisibleSlides(7);
+                return null;
+            }
+        }
+    }
     
-    setEventListener() {
+    setEventListeners() {
         document.querySelector(`#slider-content${this.id}`).addEventListener('transitionend',(e) => this.handleTransitioinEnd(e));
+        window.addEventListener('resize',() => this.handleRezise());
     }
     
     updateGapWidth() {
@@ -57,10 +91,13 @@ class itemsSliderContent extends React.Component {
     }
     
     componentDidMount() {
-       // this.fetchImages();
         this.updateGapWidth();
-        this.setEventListener();
+        this.setEventListeners();
         this.props.clearTranslateNow();
+        
+        
+
+       
     }
 
 
