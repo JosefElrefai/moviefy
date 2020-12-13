@@ -11,9 +11,9 @@ class HomePage extends React.Component {
 
     componentDidMount(){
         this.props.fetchMoviesTopRated();
-        this.props.fetchMoviesUpcoming();
-        this.props.fetchMoviesPopular();
-        this.props.fetchMoviesGenres();
+        // this.props.fetchMoviesUpcoming();
+        // this.props.fetchMoviesPopular();
+        // this.props.fetchMoviesGenres();
     }
 
     render(){

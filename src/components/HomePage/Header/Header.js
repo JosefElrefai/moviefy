@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Navbar from '../../Navbar/Navbar';
-import Slider from './sliderComponents/Slider';
+import HeaderSlider from './headerSliderComponents/HeaderSlider';
 import { connect } from 'react-redux';
 
 class Header extends React.Component{
@@ -17,7 +17,7 @@ class Header extends React.Component{
                 <Navbar />
                 <header css={headerCSS} >
                     <EmptyDiv />
-                    <Slider slides={this.props.mainImgs}  css={css`flex-grow: 1;`} />
+                    <HeaderSlider slides={this.props.mainImgs}  css={css`flex-grow: 1;`} />
                 </header>
 
             </Fragment>
