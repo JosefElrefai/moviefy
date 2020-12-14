@@ -2,6 +2,8 @@
 import React from 'react';
 
 import { css } from '@emotion/react';
+import PBar from './PBar';
+import HSliderContentContainer from './HSliderContentContainer';
 
 class HeaderSlider extends React.Component {
 
@@ -9,21 +11,17 @@ class HeaderSlider extends React.Component {
     render(){
         return (
             <div css={HeaderSliderCSS} >
-                <div css={pbarCSS}>
-                    
-                </div>
+                <PBar />
+                <HSliderContentContainer />
             </div>
         );
     }
 }
 
 const HeaderSliderCSS = css`
-    height: 100vh;
-    background: red;
-`;
-const pbarCSS = css`
-    height: .9rem;
-    background: blue;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 `;
 
 

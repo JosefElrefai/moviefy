@@ -9,15 +9,13 @@ import { connect } from 'react-redux';
 
 class Header extends React.Component{
 
-
-
     render(){
         return (
             <Fragment>
                 <Navbar />
                 <header css={headerCSS} >
-                    <EmptyDiv />
-                    <HeaderSlider slides={this.props.mainImgs}  css={css`flex-grow: 1;`} />
+                    <EmptyDiv/>
+                    <HeaderSlider slides={this.props.mainImgs} />
                 </header>
 
             </Fragment>
@@ -28,16 +26,15 @@ class Header extends React.Component{
 
 
 const EmptyDiv = styled.div`
-    height: 4.6rem;
+    min-height: 4.6rem;
+    flex-grow: 0;
 `;
 
 const headerCSS = css`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    position: relative;
-    top: -4.6rem;
-    margin-bottom: -4.6rem;
+    margin-top: -4.6rem;
 `;
 
 const mapStateToProps = (state) => {

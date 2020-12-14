@@ -10,14 +10,14 @@ class HomePage extends React.Component {
 
 
     componentDidMount(){
-        this.props.fetchMoviesTopRated();
-        // this.props.fetchMoviesUpcoming();
-        // this.props.fetchMoviesPopular();
-        // this.props.fetchMoviesGenres();
+        //this.props.fetchMoviesTopRated();
+        this.props.fetchMoviesUpcoming();
+        //this.props.fetchMoviesPopular();
+        //this.props.fetchMoviesGenres();
     }
 
     render(){
-       if(this.props.moviesTopRated.length === 0){
+       if(this.props.moviesUpcoming.length === 0){
            return null;
        }
         return (
@@ -31,7 +31,7 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { moviesTopRated: state.moviesTopRated };
+    return { moviesUpcoming: state.moviesUpcoming };
 }
 
 
