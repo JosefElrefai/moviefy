@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

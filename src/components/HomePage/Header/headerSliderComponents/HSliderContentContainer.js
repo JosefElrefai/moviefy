@@ -60,7 +60,6 @@ class HSliderContentContainer extends React.Component {
         }
 
 
-
         if(window.PointerEvent){
             sliderContent.addEventListener('pointerdown', (e) => handlePointerDown(e));
             sliderContent.addEventListener('pointermove', (e) => handlePointerMove(e));
@@ -74,17 +73,13 @@ class HSliderContentContainer extends React.Component {
             sliderContent.addEventListener('touchmove', (e) => handlePointerMove(e));
             sliderContent.addEventListener('touchup', (e) => handlePointerUp(e));
         }
-        
-        
-
-        
     }
 
     componentDidMount(){
         //setInterval(this.changeSlide(),2400); 
         this.setUpTouch();
     }
-
+    
     componentWillUnmount(){
 
     }

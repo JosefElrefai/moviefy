@@ -7,7 +7,7 @@ import HeaderSlide from './HeaderSlide';
 
 class headerSliderContent extends React.Component {
 
-    getWidth = () => window.offsetWidth;
+    getWidth = () => window.innerWidth * 3;
 
     render(){
         return (
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
         return true;
     });
 
-    return { headerMovies: state.moviesUpcoming }
+    return { headerMovies }
 }
 
 export default connect(mapStateToProps)(headerSliderContent);
