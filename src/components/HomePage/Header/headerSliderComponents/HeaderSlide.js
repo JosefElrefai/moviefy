@@ -1,31 +1,34 @@
 /**@jsxImportSource @emotion/react */
-import React, { useRef } from 'react';
+import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { connect } from 'react-redux';
 
-const HeaderSlide = (props) => {
+class HeaderSlide extends React.Component {
+    constructor(props){
+        super(props);
 
-    const getWidth = window.offset
-    console.log(props.movie);
+        for (const genre of props.totGenres) {
+            if( props.movie.genre_ids[0] === genre.id ){
+                this.movieGenre = genre.name;
+            }
+        }
+    }
 
-    return (
-        <HSlide movie={props.movie} >
-            <div css={movieDetailsCSS} >
-                <p className="lead">Latest</p>
-                <h3>{props.movie.title}</h3>
-                <p>Thriller | 5.9 Rating</p>
-            </div>
-        </HSlide>
-    );
+    render(){
+        return (
+            <HSlide movie={this.props.movie} >
+                <div css={movieDetailsCSS} >
+                    <p className="lead">Latest</p>
+                    <h1>{this.props.movie.title}</h1>
+                    <p css={genreRatingCSS} >{`${this.movieGenre} | ${this.props.movie.vote_average} Rating`}</p>
+                </div>
+            </HSlide>
+        );
+    }
 }
 
 
-{/* <div style={{ height: "100%", width: "100vw", background: "yellow", flexShrink: "0"}}>
-                    a
-                </div>
-                <div style={{ height: "100%", width: "100vw", background: "green", flexShrink: "0"}}>
-                    b
-                </div> */}
 
 const HSlide = styled.div`
     width: 100%;
@@ -37,16 +40,28 @@ const HSlide = styled.div`
         position: absolute;
         width: 100%;
         height: 100%;
-        background: #666;
-        opacity: 0.3;
+        background: #000;
+        opacity: 0.4;
     }
 `;
 
 const movieDetailsCSS = css`
     position: absolute;
-    left: 4rem;
+    left: 5rem;
     bottom: 4rem;
     color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
 `;
 
-export default HeaderSlide;
+const genreRatingCSS = css`
+    font-size: 1.2rem;
+`;
+
+const mapStateToProps = (state) => {
+    return { totGenres: state.movieGenres };
+}
+
+export default connect(mapStateToProps)(HeaderSlide);

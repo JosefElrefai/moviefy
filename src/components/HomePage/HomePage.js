@@ -13,7 +13,7 @@ class HomePage extends React.Component {
         //this.props.fetchMoviesTopRated();
         this.props.fetchMoviesUpcoming();
         //this.props.fetchMoviesPopular();
-        //this.props.fetchMoviesGenres();
+        this.props.fetchMoviesGenres();
     }
 
     render(){
