@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import axios from "axios";
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import AOS from 'aos';
@@ -24,18 +23,4 @@ class App  extends React.Component {
     }
 };
 
-const Cont = styled.div`
-    height: 100vh;
-    width: 100%;
-    background: #161130;
-    display: flex;
-    align-items: center;
-`;
-
-const mapStateToProps = (state) => {
-    return { allSongs: state.songs};
-};
-
-
-
-export default connect(null)(App);
+export default connect()(App);

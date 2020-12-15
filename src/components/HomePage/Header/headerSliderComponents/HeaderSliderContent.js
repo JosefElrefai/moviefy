@@ -1,20 +1,42 @@
+/** @jsxImportSource @emotion/react */
 import React from 'react';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import styled from '@emotion/styled';
+
+import HeaderSlide from './HeaderSlide';
 
 class headerSliderContent extends React.Component {
+
+    getWidth = () => window.offsetWidth;
+
     render(){
         return (
-            <div style={{display: "flex", width: "100%", overflow: "hidden", flexGrow: "1"}} className="h-slider-content" >
-                <div style={{ height: "100%", width: "80%", background: "yellow", flexShrink: "0"}}>
-                    a
-                </div>
-                <div style={{ height: "100%", width: "80%", background: "green", flexShrink: "0"}}>
-                    b
-                </div>
-
-            </div>
+            <HSliderContent width={this.getWidth()} className="h-slider-content" >
+                {this.props.headerMovies.map((movie) => <HeaderSlide movie={movie} key={movie.id} />)}
+            </HSliderContent>
         );
     }
-} 
+}
 
-export default headerSliderContent;
+
+
+const HSliderContent = styled.div`
+    flex-grow: 1;
+    width: ${props => props.width}px;
+    display: flex;
+    touch-action: none;
+`;
+
+const mapStateToProps = (state) => {
+
+    const headerMovies = state.moviesUpcoming.filter((m, i) => {
+        if(i > 2){
+            return false;
+        }
+        return true;
+    });
+
+    return { headerMovies: state.moviesUpcoming }
+}
+
+export default connect(mapStateToProps)(headerSliderContent);

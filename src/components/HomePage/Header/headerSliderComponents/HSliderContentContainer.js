@@ -27,37 +27,61 @@ class HSliderContentContainer extends React.Component {
     }
     */
 
-    setUpTouch() {
-        const sliderContent = document.querySelector('h-slider-content');
 
-        const handleMouseDown = (e) => {
+    setUpTouch() {
+        const sliderContent = document.querySelector('.h-slider-content');
+        let currentTransform = 0;
+        
+        const handlePointerDown = (e) => {
+            sliderContent.style.removeProperty('transition');
             this.moving = true;
             this.initialPos = e.pageX;
-        }
+            const transformMatrix = window.getComputedStyle(sliderContent).getPropertyValue('transform');
+            if(transformMatrix !== 'none'){
+                currentTransform = parseInt(transformMatrix.split(',')[4].trim()); //this gives current offset
+            }
+        } 
 
-        const handleMouseMove = (e) => { //this function is a incremental one (runs alot of times in small steps)
+        const handlePointerMove = (e) => { //this function is a incremental one (runs alot of times in small steps)
             if(this.moving){
                 this.currentPos = e.pageX;
                 const diff = this.currentPos - this.initialPos; 
-                sliderContent.style.transform;
+                const totalTransform = (currentTransform + diff) < 200 ? (currentTransform + diff) : 200;
+
+                sliderContent.style.transform = `translateX(${totalTransform}px`;
+
             }
         }
 
-        const handleMouseUp = () => {
+        const handlePointerUp = () => {
             this.moving = false;
+            sliderContent.style.transition = 'transform .5s';
+            sliderContent.style.transform = `translateX(0px)`;
         }
 
-        sliderContent.addEventListener('mousedown', (e) => handleMouseDown(e));
 
-        sliderContent.addEventListener('mousemove', (e) => handleMouseMove(e));
 
-        sliderContent.addEventListener('mouseup', (e) => handleMouseUp(e));
+        if(window.PointerEvent){
+            sliderContent.addEventListener('pointerdown', (e) => handlePointerDown(e));
+            sliderContent.addEventListener('pointermove', (e) => handlePointerMove(e));
+            sliderContent.addEventListener('pointerup', (e) => handlePointerUp(e));
+        } else {
+            sliderContent.addEventListener('mousedown', (e) => handlePointerDown(e));
+            sliderContent.addEventListener('mousemove', (e) => handlePointerMove(e));
+            sliderContent.addEventListener('mouseup', (e) => handlePointerUp(e));
+            
+            sliderContent.addEventListener('touchdown', (e) => handlePointerDown(e));
+            sliderContent.addEventListener('touchmove', (e) => handlePointerMove(e));
+            sliderContent.addEventListener('touchup', (e) => handlePointerUp(e));
+        }
+        
+        
 
         
     }
 
     componentDidMount(){
-        //setInterval(this.changeSlide(),2400);
+        //setInterval(this.changeSlide(),2400); 
         this.setUpTouch();
     }
 
@@ -79,14 +103,7 @@ class HSliderContentContainer extends React.Component {
 
 const mapStateToProps = (state) => {
 
-    const headerMovies = state.moviesUpcoming.filter((m, i) => {
-        if(i > 4){
-            return false;
-        }
-        return true;
-    });
-
-    return { activeIndex: state.activeIndex, headerMovies };
+    return { activeIndex: state.activeIndex };
 }
 
 const mapActionsTopProps = () => {

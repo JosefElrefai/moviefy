@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React, { Fragment } from 'react';
-import axios from 'axios';
 import { css } from '@emotion/react';
 
 import ItemSlide from './ItemSlide';
@@ -43,7 +42,6 @@ class itemsSliderContent extends React.Component {
     }
 
     handleRezise = () => {
-        const { count } = this.props;
         if(window.innerWidth > 1500 ){
             this.props.changeVisibleSlides(this.maxVisible);
         } else {
@@ -204,6 +202,8 @@ const mapStateToProps = (state, props) => {
         case 'Popular':
             movies = state.moviesPopular.map(movie => movie);
             return { totalMovies: movies };
+        default:
+            return { totalMovies: 'NO_MOVIES' }
     }
 
 
