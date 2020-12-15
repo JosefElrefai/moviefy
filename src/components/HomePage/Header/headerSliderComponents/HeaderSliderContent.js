@@ -6,13 +6,47 @@ import styled from '@emotion/styled';
 import HeaderSlide from './HeaderSlide';
 
 class headerSliderContent extends React.Component {
+    constructor(props){
+        super(props);
+        this.threeMovies = [];
+    }
 
-    getWidth = () => window.innerWidth * 3;
+    getWidth = () => window.innerWidth * 3; 
+
+    renderSlides(){ //always renders 3 slides
+        const { activeIndex, headerMovies } = this.props;
+
+        //two special cases, active slide always in middle  
+        if(activeIndex === 0){
+            this.threeMovies[0] = headerMovies[headerMovies.length - 1];
+            this.threeMovies[1] = headerMovies[0];
+            this.threeMovies[2] = headerMovies[1];
+            
+        } else if(activeIndex === headerMovies.length - 1){
+            this.threeMovies[0] = headerMovies[activeIndex - 1];
+            this.threeMovies[1] = headerMovies[activeIndex];
+            this.threeMovies[2] = headerMovies[0];
+        } else{
+            for(let i = 0; i < 3; i++){
+                if(headerMovies.length - activeIndex - 1 >= 3){
+                    this.threeMovies[i] = headerMovies[this.props.activeIndex - 1 + i];
+                } else{
+                    console.log('HeaderMovies must have a minimum of three movies');
+                }
+            }
+        }
+
+
+
+
+        console.log(this.threeMovies);
+        return this.threeMovies.map(movie => <HeaderSlide movie={movie} />);
+    }
 
     render(){
         return (
             <HSliderContent width={this.getWidth()} className="h-slider-content" >
-                {this.props.headerMovies.map((movie) => <HeaderSlide movie={movie} key={movie.id} />)}
+                {this.renderSlides()}
             </HSliderContent>
         );
     }
@@ -30,13 +64,13 @@ const HSliderContent = styled.div`
 const mapStateToProps = (state) => {
 
     const headerMovies = state.moviesUpcoming.filter((m, i) => {
-        if(i > 2){
+        if(4 < i){
             return false;
         }
         return true;
     });
 
-    return { headerMovies }
+    return { headerMovies, activeIndex: state.activeIndex }
 }
 
 export default connect(mapStateToProps)(headerSliderContent);

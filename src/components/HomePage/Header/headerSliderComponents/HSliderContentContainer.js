@@ -13,6 +13,7 @@ class HSliderContentContainer extends React.Component {
 
     
     /*
+    
     changeSlide() {
         let goToIndex;
         const { activeIndex } = this.props;
@@ -27,6 +28,7 @@ class HSliderContentContainer extends React.Component {
     }
     */
 
+    getWidth = () => window.innerWidth;
 
     setUpTouch() {
         const sliderContent = document.querySelector('.h-slider-content');
@@ -55,7 +57,7 @@ class HSliderContentContainer extends React.Component {
 
         const handlePointerUp = () => {
             this.moving = false;
-            sliderContent.style.transition = 'transform .5s';
+            sliderContent.style.transition = 'transform .7s';
             sliderContent.style.transform = `translateX(0px)`;
         }
 
@@ -76,7 +78,9 @@ class HSliderContentContainer extends React.Component {
     }
 
     componentDidMount(){
-        //setInterval(this.changeSlide(),2400); 
+        //setInterval(this.changeSlide(),2400);  
+        const sliderContent = document.querySelector('.h-slider-content');
+        sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
         this.setUpTouch();
     }
     
