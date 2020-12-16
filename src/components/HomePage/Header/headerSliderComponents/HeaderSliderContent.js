@@ -16,7 +16,7 @@ class headerSliderContent extends React.Component {
     renderSlides(){ //always renders 3 slides
         const { activeIndex, headerMovies } = this.props;
 
-        //two special cases, active slide always in middle  
+        //two special cases, (active slide always in middle)
         if(activeIndex === 0){
             this.threeMovies[0] = headerMovies[headerMovies.length - 1];
             this.threeMovies[1] = headerMovies[0];
@@ -28,7 +28,7 @@ class headerSliderContent extends React.Component {
             this.threeMovies[2] = headerMovies[0];
         } else{
             for(let i = 0; i < 3; i++){
-                if(headerMovies.length - activeIndex - 1 >= 3){
+                if(headerMovies.length - activeIndex - 1 >= 2){
                     this.threeMovies[i] = headerMovies[this.props.activeIndex - 1 + i];
                 } else{
                     console.log('HeaderMovies must have a minimum of three movies');
@@ -36,11 +36,8 @@ class headerSliderContent extends React.Component {
             }
         }
 
-
-
-
         console.log(this.threeMovies);
-        return this.threeMovies.map(movie => <HeaderSlide movie={movie} />);
+        return this.threeMovies.map(movie => <HeaderSlide movie={movie} key={movie.id} />);
     }
 
     render(){

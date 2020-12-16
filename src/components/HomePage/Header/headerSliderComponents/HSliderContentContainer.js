@@ -6,14 +6,18 @@ import HeaderSliderContent from './HeaderSliderContent';
 
 class HSliderContentContainer extends React.Component {
     constructor(props){
-        super(props);
-        this.moving = false;
+        super(props); //renger massa, rengör hela komponenten imorgon!, 
+        this.moving = false; //GÖR TRANSITION END EVENT OCH NOLLSTÄLL DESSA & ÖKA ACTIVE INDEX 
         this.currentPos = null;
+        this.maxDiff =  null;
+        this.maxNow = false;
+        this.moveLeftNow = false; 
+        this.moveRightNow = false;
     }
 
     
     /*
-    
+
     changeSlide() {
         let goToIndex;
         const { activeIndex } = this.props;
@@ -47,8 +51,22 @@ class HSliderContentContainer extends React.Component {
         const handlePointerMove = (e) => { //this function is a incremental one (runs alot of times in small steps)
             if(this.moving){
                 this.currentPos = e.pageX;
-                const diff = this.currentPos - this.initialPos; 
-                const totalTransform = (currentTransform + diff) < 200 ? (currentTransform + diff) : 200;
+                const diff = this.currentPos - this.initialPos;
+
+                if(Math.abs(diff) > this.maxDiff){ //this is to check if supposed to move after
+                    this.maxDiff = Math.abs(diff);            //flytta till handle pointerup?
+                    if(diff < 0){   
+                        this.moveRightNow = true;
+                    } else if(diff > 0){
+                        this.moveLeftNow = true;
+                    }
+                } else{
+                    this.moveLeftNow = false;
+                    this.moveRightNow = false;
+                }
+
+                console.log(diff);
+                const totalTransform = (currentTransform + diff) < 200 ? (currentTransform + diff) : 200; // sets max move (unneccecary now?)
 
                 sliderContent.style.transform = `translateX(${totalTransform}px`;
 
@@ -58,14 +76,40 @@ class HSliderContentContainer extends React.Component {
         const handlePointerUp = () => {
             this.moving = false;
             sliderContent.style.transition = 'transform .7s';
-            sliderContent.style.transform = `translateX(0px)`;
+            
+            if(this.moveLeftNow){
+                sliderContent.style.transform = `translateX(0px)`;
+
+            } else if(this.moveRightNow){
+                sliderContent.style.transform = `translateX(-${this.getWidth()*2}px)`; //flytt hit
+            } else{
+                sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
+                this.maxDiff = 0;
+            }
         }
 
+        const handleTransitionEnd = () => {
+            if(this.moveRightNow){
+                this.props.changeActiveIndex(this.props.activeIndex + 1);
+            } else if(this.moveLeftNow){
+                this.props.changeActiveIndex(this.props.activeIndex - 1);
+            }
+            this.moveLeftNow = false; 
+            this.moveRightNow = false;
+            this.maxDiff = 0;
+
+            sliderContent.style.removeProperty('transition');
+            sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
+
+
+        }
 
         if(window.PointerEvent){
             sliderContent.addEventListener('pointerdown', (e) => handlePointerDown(e));
             sliderContent.addEventListener('pointermove', (e) => handlePointerMove(e));
             sliderContent.addEventListener('pointerup', (e) => handlePointerUp(e));
+
+            sliderContent.addEventListener('transitionend', () => handleTransitionEnd())
         } else {
             sliderContent.addEventListener('mousedown', (e) => handlePointerDown(e));
             sliderContent.addEventListener('mousemove', (e) => handlePointerMove(e));
@@ -74,6 +118,8 @@ class HSliderContentContainer extends React.Component {
             sliderContent.addEventListener('touchdown', (e) => handlePointerDown(e));
             sliderContent.addEventListener('touchmove', (e) => handlePointerMove(e));
             sliderContent.addEventListener('touchup', (e) => handlePointerUp(e));
+
+            sliderContent.addEventListener('transitionend', () => handleTransitionEnd())
         }
     }
 
@@ -82,7 +128,9 @@ class HSliderContentContainer extends React.Component {
         const sliderContent = document.querySelector('.h-slider-content');
         sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
         this.setUpTouch();
+        
     }
+
     
     componentWillUnmount(){
 
@@ -113,4 +161,4 @@ const mapActionsTopProps = () => {
 //movies
 //
 
-export default connect(mapStateToProps, mapActionsTopProps)(HSliderContentContainer);
+export default connect(mapStateToProps, { changeActiveIndex })(HSliderContentContainer);
