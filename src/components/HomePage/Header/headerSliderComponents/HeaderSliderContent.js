@@ -4,11 +4,16 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 
 import HeaderSlide from './HeaderSlide';
+import { setHMoviesCount } from '../../../../actions/headerSlider'
 
 class headerSliderContent extends React.Component {
     constructor(props){
         super(props);
         this.threeMovies = [];
+    }
+
+    componentDidMount(){
+        this.props.setHMoviesCount(this.props.headerMovies.length);
     }
 
     getWidth = () => window.innerWidth * 3; 
@@ -28,11 +33,11 @@ class headerSliderContent extends React.Component {
             this.threeMovies[2] = headerMovies[0];
         } else{
             for(let i = 0; i < 3; i++){
-                if(headerMovies.length - activeIndex - 1 >= 2){
+                //if(headerMovies.length - activeIndex - 1 >= 2){
                     this.threeMovies[i] = headerMovies[this.props.activeIndex - 1 + i];
-                } else{
+               // } else{
                     console.log('HeaderMovies must have a minimum of three movies');
-                }
+               // }
             }
         }
 
@@ -67,7 +72,8 @@ const mapStateToProps = (state) => {
         return true;
     });
 
-    return { headerMovies, activeIndex: state.activeIndex }
+
+    return { headerMovies, activeIndex: state.headerActiveIndex }
 }
 
-export default connect(mapStateToProps)(headerSliderContent);
+export default connect(mapStateToProps, { setHMoviesCount })(headerSliderContent);

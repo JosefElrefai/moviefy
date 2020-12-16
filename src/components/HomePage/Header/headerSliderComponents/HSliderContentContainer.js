@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { changeActiveIndex } from '../../../../actions/headerSlider';
+import { changeHActiveIndex } from '../../../../actions/headerSlider';
 import HeaderSliderContent from './HeaderSliderContent';
 
 class HSliderContentContainer extends React.Component {
@@ -28,7 +28,7 @@ class HSliderContentContainer extends React.Component {
             goToIndex = 0;
         }
 
-        this.props.changeActiveIndex(goToIndex);
+        this.props.changeHActiveIndex(goToIndex);
     }
     */
 
@@ -89,11 +89,30 @@ class HSliderContentContainer extends React.Component {
         }
 
         const handleTransitionEnd = () => {
+            let activeIndexTo;
+
             if(this.moveRightNow){
-                this.props.changeActiveIndex(this.props.activeIndex + 1);
+
+                if(this.props.activeIndex === this.props.moviesCount - 1){
+                    activeIndexTo = 0;
+                } else{
+                    activeIndexTo = this.props.activeIndex + 1;
+                }
+
+
+                this.props.changeHActiveIndex(activeIndexTo);
+
             } else if(this.moveLeftNow){
-                this.props.changeActiveIndex(this.props.activeIndex - 1);
+
+                if(this.props.activeIndex === 0){
+                    activeIndexTo = this.props.moviesCount - 1;
+                } else{
+                    activeIndexTo = this.props.activeIndex - 1;
+                }
+
+                this.props.changeHActiveIndex(activeIndexTo);
             }
+
             this.moveLeftNow = false; 
             this.moveRightNow = false;
             this.maxDiff = 0;
@@ -150,15 +169,11 @@ class HSliderContentContainer extends React.Component {
 
 const mapStateToProps = (state) => {
 
-    return { activeIndex: state.activeIndex };
-}
-
-const mapActionsTopProps = () => {
-    return { changeActiveIndex };
+    return { activeIndex: state.headerActiveIndex, moviesCount: state.headerMoviesCount };
 }
 
 //a-ind
 //movies
 //
 
-export default connect(mapStateToProps, { changeActiveIndex })(HSliderContentContainer);
+export default connect(mapStateToProps, { changeHActiveIndex })(HSliderContentContainer);

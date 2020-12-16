@@ -1,8 +1,15 @@
-import { EDIT_ACTIVE_INDEX } from '../actionTypes';
+import { EDIT_H_ACTIVE_INDEX, EDIT_H_MOVIES_COUNT } from '../actionTypes';
 
-export const changeActiveIndex = (activeIndex) => {
+export const changeHActiveIndex = (activeIndex) => {
     return {
-        type: EDIT_ACTIVE_INDEX,
+        type: EDIT_H_ACTIVE_INDEX,
         payload: activeIndex
     }
 } 
+
+export const setHMoviesCount = (count) => {
+    return {
+        type: EDIT_H_MOVIES_COUNT,
+        payload: count
+    }
+}
