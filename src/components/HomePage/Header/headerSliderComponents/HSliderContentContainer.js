@@ -3,21 +3,18 @@ import { connect } from 'react-redux';
 
 import { changeHActiveIndex } from '../../../../actions/headerSlider';
 import HeaderSliderContent from './HeaderSliderContent';
+import PBar from './PBar';
 
 class HSliderContentContainer extends React.Component {
     constructor(props){
-        super(props); //renger massa, rengör hela komponenten imorgon!, 
-        this.moving = false; //GÖR TRANSITION END EVENT OCH NOLLSTÄLL DESSA & ÖKA ACTIVE INDEX 
-        this.currentPos = null;
+        super(props);
+        this.moving = false; 
         this.maxDiff =  null;
-        this.maxNow = false;
         this.moveLeftNow = false; 
         this.moveRightNow = false;
     }
 
-    
     /*
-
     changeSlide() {
         let goToIndex;
         const { activeIndex } = this.props;
@@ -38,7 +35,7 @@ class HSliderContentContainer extends React.Component {
         const sliderContent = document.querySelector('.h-slider-content');
         let currentTransform = 0;
         
-        const handlePointerDown = (e) => {
+        this.handlePointerDown = (e) => {
             sliderContent.style.removeProperty('transition');
             this.moving = true;
             this.initialPos = e.pageX;
@@ -48,13 +45,13 @@ class HSliderContentContainer extends React.Component {
             }
         } 
 
-        const handlePointerMove = (e) => { //this function is a incremental one (runs alot of times in small steps)
+        this.handlePointerMove = (e) => { //this function is a incremental one (runs alot of times in small steps)
             if(this.moving){
-                this.currentPos = e.pageX;
-                const diff = this.currentPos - this.initialPos;
+                const currentPos = e.pageX;
+                const diff = currentPos - this.initialPos;
 
-                if(Math.abs(diff) > this.maxDiff){ //this is to check if supposed to move after
-                    this.maxDiff = Math.abs(diff);            //flytta till handle pointerup?
+                if(Math.abs(diff) > this.maxDiff){ //this sets flags that handlePointerUp() will use 
+                    this.maxDiff = Math.abs(diff); //to determine where to translate
                     if(diff < 0){   
                         this.moveRightNow = true;
                     } else if(diff > 0){
@@ -65,30 +62,47 @@ class HSliderContentContainer extends React.Component {
                     this.moveRightNow = false;
                 }
 
-                console.log(diff);
-                const totalTransform = (currentTransform + diff) < 200 ? (currentTransform + diff) : 200; // sets max move (unneccecary now?)
+                //lines below sets a max translate for when next slide is not rendered
+                let totalTransform;
+                
+                if((currentTransform + diff >= 200)){ //checking if max left 
+                    totalTransform = 200;
+                    this.moveRightNow = false; //makes sure it doesnt move wrong
+                    this.moveLeftNow = true;
 
+                } else if(currentTransform + diff <= - this.getWidth()*2 -200 ){ //checking if max right
+                    totalTransform = -this.getWidth()*2 - 200;
+                    this.moveRightNow = true; //makes sure it doesnt move wrong
+                    this.moveLeftNow = false;
+
+                } else { //must in range
+                    totalTransform = currentTransform + diff;
+                }
+                
                 sliderContent.style.transform = `translateX(${totalTransform}px`;
 
             }
         }
 
-        const handlePointerUp = () => {
+        this.handlePointerUp = () => {
             this.moving = false;
             sliderContent.style.transition = 'transform .7s';
             
             if(this.moveLeftNow){
                 sliderContent.style.transform = `translateX(0px)`;
-
+                
             } else if(this.moveRightNow){
-                sliderContent.style.transform = `translateX(-${this.getWidth()*2}px)`; //flytt hit
+                sliderContent.style.transform = `translateX(-${this.getWidth()*2}px)`; 
+
             } else{
                 sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
                 this.maxDiff = 0;
             }
+            document.querySelector('.palce-marker').style.transform = `translateX(${100*this.props.activeIndex}%)`;
+
         }
 
-        const handleTransitionEnd = () => {
+        this.handleTransitionEnd = () => {
             let activeIndexTo;
 
             if(this.moveRightNow){
@@ -119,45 +133,68 @@ class HSliderContentContainer extends React.Component {
 
             sliderContent.style.removeProperty('transition');
             sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
-
-
         }
+
 
         if(window.PointerEvent){
-            sliderContent.addEventListener('pointerdown', (e) => handlePointerDown(e));
-            sliderContent.addEventListener('pointermove', (e) => handlePointerMove(e));
-            sliderContent.addEventListener('pointerup', (e) => handlePointerUp(e));
+            sliderContent.addEventListener('pointerdown', (e) => this.handlePointerDown(e));
+            sliderContent.addEventListener('pointermove', (e) => this.handlePointerMove(e));
+            sliderContent.addEventListener('pointerup', () => this.handlePointerUp());
 
-            sliderContent.addEventListener('transitionend', () => handleTransitionEnd())
         } else {
-            sliderContent.addEventListener('mousedown', (e) => handlePointerDown(e));
-            sliderContent.addEventListener('mousemove', (e) => handlePointerMove(e));
-            sliderContent.addEventListener('mouseup', (e) => handlePointerUp(e));
+            sliderContent.addEventListener('mousedown', (e) => this.handlePointerDown(e));
+            sliderContent.addEventListener('mousemove', (e) => this.handlePointerMove(e));
+            sliderContent.addEventListener('mouseup', () => this.handlePointerUp());
             
-            sliderContent.addEventListener('touchdown', (e) => handlePointerDown(e));
-            sliderContent.addEventListener('touchmove', (e) => handlePointerMove(e));
-            sliderContent.addEventListener('touchup', (e) => handlePointerUp(e));
+            sliderContent.addEventListener('touchdown', (e) => this.handlePointerDown(e));
+            sliderContent.addEventListener('touchmove', (e) => this.handlePointerMove(e));
+            sliderContent.addEventListener('touchup', () => this.handlePointerUp());
 
-            sliderContent.addEventListener('transitionend', () => handleTransitionEnd())
         }
+        sliderContent.addEventListener('transitionend', () => this.handleTransitionEnd());
     }
+
+    handleResize = () => { //making slider responsive
+        const sliderContent = document.querySelector('.h-slider-content');
+        sliderContent.style.width = `${this.getWidth()*3}px`;
+        sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
+
+    }    
 
     componentDidMount(){
         //setInterval(this.changeSlide(),2400);  
         const sliderContent = document.querySelector('.h-slider-content');
         sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
         this.setUpTouch();
-        
+        window.addEventListener('resize', () => this.handleResize());
+
     }
 
     
-    componentWillUnmount(){
+    componentWillUnmount(){ //only removes eventListeners
+        const sliderContent = document.querySelector('.h-slider-content');
+        if(window.PointerEvent){
+            sliderContent.removeEventListener('pointerdown', (e) => this.handlePointerDown(e));
+            sliderContent.removeEventListener('pointermove', (e) => this.handlePointerMove(e));
+            sliderContent.removeEventListener('pointerup', () => this.handlePointerUp());
+        } else {
+            sliderContent.removeEventListener('mousedown', (e) => this.handlePointerDown(e));
+            sliderContent.removeEventListener('mousemove', (e) => this.handlePointerMove(e));
+            sliderContent.removeEventListener('mouseup', () => this.handlePointerUp());
+            
+            sliderContent.removeEventListener('touchdown', (e) => this.handlePointerDown(e));
+            sliderContent.removeEventListener('touchmove', (e) => this.handlePointerMove(e));
+            sliderContent.removeEventListener('touchup', () => this.handlePointerUp());
+        }
 
+        sliderContent.removeEventListener('transitionend', () => this.handleTransitionEnd());
+        window.removeEventListener('resize', () => this.handleResize());
     }
 
     render (){
         return (
             <Fragment>
+                <PBar  />
                 <HeaderSliderContent />
             </Fragment>
         );
@@ -165,15 +202,9 @@ class HSliderContentContainer extends React.Component {
 }
 
 
-
-
 const mapStateToProps = (state) => {
 
     return { activeIndex: state.headerActiveIndex, moviesCount: state.headerMoviesCount };
 }
-
-//a-ind
-//movies
-//
 
 export default connect(mapStateToProps, { changeHActiveIndex })(HSliderContentContainer);

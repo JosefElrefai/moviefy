@@ -6,3 +6,4 @@ export const GET_GENRES = 'GET_GENRES';
 //For HeaderSlider
 export const EDIT_H_ACTIVE_INDEX = 'EDIT_H_ACTIVE_INDEX';
 export const EDIT_H_MOVIES_COUNT = 'EDIT_H_MOVIES_COUNT';
+export const EDIT_H_TRANSLATE_V = 'EDIT_H_TRANSLATE_V';

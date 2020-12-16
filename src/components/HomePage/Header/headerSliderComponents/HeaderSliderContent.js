@@ -9,14 +9,14 @@ import { setHMoviesCount } from '../../../../actions/headerSlider'
 class headerSliderContent extends React.Component {
     constructor(props){
         super(props);
-        this.threeMovies = [];
+        this.threeMovies = []; //the three movies that will be rendered
     }
 
     componentDidMount(){
         this.props.setHMoviesCount(this.props.headerMovies.length);
     }
 
-    getWidth = () => window.innerWidth * 3; 
+    getWidth = () => window.innerWidth; 
 
     renderSlides(){ //always renders 3 slides
         const { activeIndex, headerMovies } = this.props;
@@ -33,21 +33,15 @@ class headerSliderContent extends React.Component {
             this.threeMovies[2] = headerMovies[0];
         } else{
             for(let i = 0; i < 3; i++){
-                //if(headerMovies.length - activeIndex - 1 >= 2){
                     this.threeMovies[i] = headerMovies[this.props.activeIndex - 1 + i];
-               // } else{
-                    console.log('HeaderMovies must have a minimum of three movies');
-               // }
             }
         }
-
-        console.log(this.threeMovies);
         return this.threeMovies.map(movie => <HeaderSlide movie={movie} key={movie.id} />);
     }
 
     render(){
         return (
-            <HSliderContent width={this.getWidth()} className="h-slider-content" >
+            <HSliderContent width={this.getWidth()*3} className="h-slider-content" >
                 {this.renderSlides()}
             </HSliderContent>
         );

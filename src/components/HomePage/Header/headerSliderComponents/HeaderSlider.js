@@ -11,7 +11,6 @@ class HeaderSlider extends React.Component {
     render(){
         return (
             <div css={HeaderSliderCSS} >
-                <PBar />
                 <HSliderContentContainer />
             </div>
         );
