@@ -12,7 +12,7 @@ const PBar = (props) => {
 
     return (
         <div css={PBarCSS} >
-            <PlaceMarker className="palce-marker" width={width.current}  />
+            <PlaceMarker className="place-marker" width={width.current}  />
         </div>
     );
 }

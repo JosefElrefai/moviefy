@@ -86,19 +86,35 @@ class HSliderContentContainer extends React.Component {
 
         this.handlePointerUp = () => {
             this.moving = false;
+            const placemarker = document.querySelector('.place-marker');
             sliderContent.style.transition = 'transform .7s';
             
+
             if(this.moveLeftNow){
                 sliderContent.style.transform = `translateX(0px)`;
+
+                if(this.props.activeIndex === 0){
+                    placemarker.style.transform = `translateX(${100*(this.props.moviesCount - 1)}%)`;
+                } else{
+                    placemarker.style.transform = `translateX(${100*(this.props.activeIndex - 1)}%)`;
+                }
+
                 
             } else if(this.moveRightNow){
                 sliderContent.style.transform = `translateX(-${this.getWidth()*2}px)`; 
+
+                if(this.props.activeIndex === this.props.moviesCount -1){
+                    placemarker.style.transform = `translateX(0%)`;
+                } else{
+                    placemarker.style.transform = `translateX(${100*(this.props.activeIndex + 1)}%)`;
+                }
+                
+
 
             } else{
                 sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
                 this.maxDiff = 0;
             }
-            document.querySelector('.palce-marker').style.transform = `translateX(${100*this.props.activeIndex}%)`;
 
         }
 
