@@ -127,9 +127,15 @@ class HSliderContentContainer extends React.Component {
 
             } else{
                 sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
+
+                if(this.maxDiff === 0 || this.maxDiff === null){
+                    return; //this fixed a bug, (when clicking, instead of moving transitionin will be stuck att true,
+                            // (no transition & transition end to reset it))
+                }
+
                 this.maxDiff = 0;
             }
-
+            
             this.transitioning = true;
 
         }
@@ -139,14 +145,14 @@ class HSliderContentContainer extends React.Component {
 
             if(this.moveRightNow){
 
-                if(this.props.activeIndex === this.props.moviesCount - 1){
-                    activeIndexTo = 0;
-                } else{
-                    activeIndexTo = this.props.activeIndex + 1;
-                }
+            if(this.props.activeIndex === this.props.moviesCount - 1){
+                activeIndexTo = 0;
+            } else{
+                activeIndexTo = this.props.activeIndex + 1;
+            }
 
 
-                this.props.changeHActiveIndex(activeIndexTo);
+            this.props.changeHActiveIndex(activeIndexTo);
 
             } else if(this.moveLeftNow){
 
