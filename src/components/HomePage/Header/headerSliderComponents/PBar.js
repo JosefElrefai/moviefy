@@ -5,30 +5,41 @@ import { connect } from 'react-redux';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const PBar = (props) => {
-    const width = useRef(0);
-    
-    width.current = 100/props.moviesCount;
+class PBar extends React.Component {
 
-    return (
-        <div css={PBarCSS} >
-            <PlaceMarker className="place-marker" width={width.current}  />
-        </div>
-    );
+    
+
+    render(){
+
+        const width = 100/this.props.moviesCount;
+
+        return (
+            <div css={PBarCSS} >
+                <PlaceMarker className="place-marker" width={width}  />
+            </div>
+        );
+
+    }
 }
 
 const PBarCSS = css`
-    height: .7rem;
+    height: .4rem;
+    width: 100%;
     background: white;
-    overflow: hidden;
 `;
 
 const PlaceMarker = styled.div`
-    background: #01b4e4;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    position: absolute;
+    top: 3.5rem;
+    height: 3rem;
+    box-shadow: 1px 1px white;
+    margin-bottom: -1px;
+    background:  #EB4E70;
     width: ${props => props.width}%;
-    border-radius: 15px;
-    height: 100%;
-    transition: transform .7s; 
+    transition: transform .7s;
+
 `;
 
 const mapStateToProps = (state) => {

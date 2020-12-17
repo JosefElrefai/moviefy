@@ -12,6 +12,7 @@ class HSliderContentContainer extends React.Component {
         this.maxDiff =  null;
         this.moveLeftNow = false; 
         this.moveRightNow = false;
+        this.transitioning = false;
     }
 
     /*
@@ -36,6 +37,12 @@ class HSliderContentContainer extends React.Component {
         let currentTransform = 0;
         
         this.handlePointerDown = (e) => {
+
+            if(this.transitioning){
+                console.log('ran');
+                return;
+            }
+
             sliderContent.style.removeProperty('transition');
             this.moving = true;
             this.initialPos = e.pageX;
@@ -46,6 +53,11 @@ class HSliderContentContainer extends React.Component {
         } 
 
         this.handlePointerMove = (e) => { //this function is a incremental one (runs alot of times in small steps)
+
+            if(this.transitioning){
+                return;
+            }
+
             if(this.moving){
                 const currentPos = e.pageX;
                 const diff = currentPos - this.initialPos;
@@ -85,6 +97,11 @@ class HSliderContentContainer extends React.Component {
         }
 
         this.handlePointerUp = () => {
+
+            if(!this.moving){
+                return;
+            }
+
             this.moving = false;
             const placemarker = document.querySelector('.place-marker');
             sliderContent.style.transition = 'transform .7s';
@@ -99,7 +116,6 @@ class HSliderContentContainer extends React.Component {
                     placemarker.style.transform = `translateX(${100*(this.props.activeIndex - 1)}%)`;
                 }
 
-                
             } else if(this.moveRightNow){
                 sliderContent.style.transform = `translateX(-${this.getWidth()*2}px)`; 
 
@@ -108,13 +124,13 @@ class HSliderContentContainer extends React.Component {
                 } else{
                     placemarker.style.transform = `translateX(${100*(this.props.activeIndex + 1)}%)`;
                 }
-                
-
 
             } else{
                 sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
                 this.maxDiff = 0;
             }
+
+            this.transitioning = true;
 
         }
 
@@ -146,6 +162,7 @@ class HSliderContentContainer extends React.Component {
             this.moveLeftNow = false; 
             this.moveRightNow = false;
             this.maxDiff = 0;
+            this.transitioning = false;
 
             sliderContent.style.removeProperty('transition');
             sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;

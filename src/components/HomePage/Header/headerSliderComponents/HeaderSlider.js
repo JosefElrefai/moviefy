@@ -22,6 +22,7 @@ const HeaderSliderCSS = css`
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    width: 100%;
 `;
 
 
