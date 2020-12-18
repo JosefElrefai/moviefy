@@ -39,7 +39,6 @@ class HSliderContentContainer extends React.Component {
         this.handlePointerDown = (e) => {
 
             if(this.transitioning){
-                console.log('ran');
                 return;
             }
 

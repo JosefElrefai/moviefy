@@ -48,7 +48,7 @@ const HSlide = styled.div`
 const movieDetailsCSS = css`
     position: absolute;
     left: 5rem;
-    bottom: 4rem;
+    bottom: 5rem;
     color: white;
 
     display: flex;
