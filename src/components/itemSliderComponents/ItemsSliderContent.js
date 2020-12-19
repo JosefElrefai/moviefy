@@ -193,13 +193,13 @@ const gapDivCSS = css`
 const mapStateToProps = (state, props) => {
     let movies = [];
    switch(props.ImgsFrom){
-        case 'TopRated':
+        case 'moviesTopRated':
             movies = state.moviesTopRated.map(movie => movie);
             return { totalMovies: movies };
-        case 'Upcoming':
+        case 'moviesUpcoming':
             movies = state.moviesUpcoming.map(movie => movie);
             return { totalMovies: movies };
-        case 'Popular':
+        case 'moviesPopular':
             movies = state.moviesPopular.map(movie => movie);
             return { totalMovies: movies };
         default:

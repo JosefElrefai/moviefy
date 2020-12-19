@@ -1,8 +1,8 @@
-import { GET_TOP_RATED, GET_UPCOMING, GET_POPULAR, GET_GENRES } from "../../actions/actionTypes";
+import { GET_M_TOP_RATED, GET_M_UPCOMING, GET_M_POPULAR, GET_M_GENRES } from "../../actions/actionTypes";
 
 export const moviesTopRated = (state = [], action) => {
     switch(action.type){
-        case GET_TOP_RATED:
+        case GET_M_TOP_RATED:
             return action.payload;
         default:
             return state;
@@ -11,7 +11,7 @@ export const moviesTopRated = (state = [], action) => {
 
 export const moviesUpcoming = (state = [], action) => {
     switch(action.type){
-        case GET_UPCOMING:
+        case GET_M_UPCOMING:
             return action.payload;
         default:
             return state;
@@ -20,7 +20,7 @@ export const moviesUpcoming = (state = [], action) => {
 
 export const moviesPopular = (state = [], action) => {
     switch(action.type){
-        case GET_POPULAR:
+        case GET_M_POPULAR:
             return action.payload;
         default:
             return state;
@@ -29,7 +29,7 @@ export const moviesPopular = (state = [], action) => {
 
 export const movieGenres = (state = [], action) => {
     switch(action.type){
-        case GET_GENRES:
+        case GET_M_GENRES:
             return action.payload;
         default:
             return state;

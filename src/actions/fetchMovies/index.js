@@ -1,5 +1,5 @@
 import movieDB from '../../apis/movieDB';
-import { GET_TOP_RATED, GET_UPCOMING, GET_POPULAR, GET_GENRES } from '../actionTypes';
+import { GET_M_TOP_RATED, GET_M_UPCOMING, GET_M_POPULAR, GET_M_GENRES } from '../actionTypes';
 
 export const fetchMoviesTopRated = () => async (dispatch) => {
     const resp = await movieDB.get('/movie/top_rated', {
@@ -10,7 +10,7 @@ export const fetchMoviesTopRated = () => async (dispatch) => {
         }
     });
 
-    dispatch({ type: GET_TOP_RATED, payload: resp.data.results });
+    dispatch({ type: GET_M_TOP_RATED, payload: resp.data.results });
 }
 
 export const fetchMoviesUpcoming = () => async (dispatch) => {
@@ -21,8 +21,8 @@ export const fetchMoviesUpcoming = () => async (dispatch) => {
             page: 1
         }
     });
-    console.log(resp.data);
-    dispatch({ type: GET_UPCOMING, payload: resp.data.results });
+
+    dispatch({ type: GET_M_UPCOMING, payload: resp.data.results });
 }
 
 export const fetchMoviesPopular = () => async (dispatch) => {
@@ -33,8 +33,7 @@ export const fetchMoviesPopular = () => async (dispatch) => {
             page: 1
         }
     });
-    console.log(resp.data);
-    dispatch({ type: GET_POPULAR, payload: resp.data.results });
+    dispatch({ type: GET_M_POPULAR, payload: resp.data.results });
 }
 
 
@@ -45,8 +44,8 @@ export const fetchMoviesGenres = () => async (dispatch) => {
             language: 'en-US'
         }
     });
-    console.log(resp.data);
-    dispatch({ type: GET_GENRES, payload: resp.data.genres });
+
+    dispatch({ type: GET_M_GENRES, payload: resp.data.genres });
 }
 
 

@@ -14,9 +14,7 @@ class ChooseSRC extends React.Component {
         const { children } = this.props;
         return (
             <Fragment>
-                {children({
-                    srcFrom: this.srcFrom    
-                })}
+                { children({ srcFrom: this.srcFrom }) }
             </Fragment>
         );
     }
