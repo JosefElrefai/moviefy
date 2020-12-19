@@ -12,7 +12,7 @@ const ItemSlide = (props) =>  {
     if(props.movie){
 
         img = `https://image.tmdb.org/t/p/w154/${props.movie.poster_path}`;
-        title = props.movie.title;
+        title = props.movie.title ? props.movie.title : props.movie.name;
 
         let genreOne;
         let genreTwo;
@@ -73,8 +73,11 @@ const MovieImage = styled.div`
 `;
 
 
-const mapStateToProps = (state) => {
-    return { totGenres: state.movieGenres }
+const mapStateToProps = (state) => { 
+
+    const totGenres = state.SRC === 'movies' ? state.movieGenres : state.TvGenres;
+
+    return { totGenres };
 } 
 
 

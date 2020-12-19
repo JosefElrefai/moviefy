@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { Fragment } from 'react';
 import { css } from '@emotion/react';
+import _ from 'lodash';
 
 import ItemSlide from './ItemSlide';
 import styled from '@emotion/styled';
@@ -92,10 +93,6 @@ class itemsSliderContent extends React.Component {
         this.updateGapWidth();
         this.setEventListeners();
         this.props.clearTranslateNow();
-        
-        
-
-       
     }
 
 
@@ -191,20 +188,10 @@ const gapDivCSS = css`
 
 
 const mapStateToProps = (state, props) => {
-    let movies = [];
-   switch(props.ImgsFrom){
-        case 'moviesTopRated':
-            movies = state.moviesTopRated.map(movie => movie);
-            return { totalMovies: movies };
-        case 'moviesUpcoming':
-            movies = state.moviesUpcoming.map(movie => movie);
-            return { totalMovies: movies };
-        case 'moviesPopular':
-            movies = state.moviesPopular.map(movie => movie);
-            return { totalMovies: movies };
-        default:
-            return { totalMovies: 'NO_MOVIES' }
-    }
+
+    const movies = _.result(state, props.ImgsFrom);
+
+    return { totalMovies: movies };
 
 
 }

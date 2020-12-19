@@ -1,4 +1,4 @@
-import { GET_TV_LATEST, GET_TV_POPULAR, GET_TV_TOP_RATED, GET_TV_GENRES } from './actionTypes';
+import { GET_TV_POPULAR, GET_TV_TOP_RATED, GET_TV_GENRES } from './actionTypes';
 import movieDB from '../apis/movieDB';
 
 export const fetchTvTopRated = () => async (dispatch) => {
@@ -21,20 +21,12 @@ export const fetchTvPopular = () => async (dispatch) => {
             page: 1
         }
     });
+
+    console.log(resp.data.results);
+
     dispatch({ type: GET_TV_POPULAR, payload: resp.data.results });
 }
 
-export const fetchMoviesLatest = () => async (dispatch) => {
-    const resp = await movieDB.get('/tv/latest', {
-        params: {
-            api_key: process.env.REACT_APP_API_KEY,
-            language: 'en-US',
-            page: 1
-        }
-    });
-
-    dispatch({ type: GET_TV_LATEST, payload: resp.data.results });
-}
 
 export const fetchTvGenres = () => async (dispatch) => {
     const resp = await movieDB.get('/genre/tv/list', {

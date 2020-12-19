@@ -12,6 +12,7 @@ class HomeMain extends React.Component {
 
     render() {
         const { SRC } = this.props;
+        const S1ImgsFrom = SRC === 'movies' ? 'moviesUpcoming' : 'TvLatest'
 
         return(
             <div id="home-main">
@@ -30,7 +31,7 @@ class HomeMain extends React.Component {
                         <div  className="slider-title" >
                             <h2>Popular</h2>
                         </div>
-                        <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="moviesPopular" />
+                        <ItemsSlider  width="80%"  height="20rem" numberOfSlides={7} imgsFrom="TvPopular" />
                         <div className="faded-line" ></div>
                     </div>
 
