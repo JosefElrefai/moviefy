@@ -2,9 +2,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
+import _ from 'lodash';
 
 import HeaderSlide from './HeaderSlide';
-import { setHMoviesCount } from '../../../../actions/headerSlider'
+import { setHMoviesCount } from '../../../../actions/headerSlider';
 
 class headerSliderContent extends React.Component {
     constructor(props){
@@ -59,13 +60,17 @@ const HSliderContent = styled.div`
 
 const mapStateToProps = (state) => {
 
-    const headerMovies = state.moviesUpcoming.filter((m, i) => {
-        if(4 < i){
-            return false;
-        }
-        return true;
-    });
+    const headerMoviesCount = 5;
+    let moviesFrom = '';
+    
+    state.SRC === 'Tv' ? ( moviesFrom = 'TvPopular' ) : (moviesFrom = 'moviesUpcoming' );
 
+    const headerMovies = _.result(state, moviesFrom).filter((m, i) => {
+        if(i < headerMoviesCount){
+            return true;
+        }
+        return false;
+    });
 
     return { headerMovies, activeIndex: state.headerActiveIndex }
 }

@@ -48,20 +48,16 @@ class HomePage extends React.Component {
 
         }
     }
-    
-    componentDidUpdate(){
-        this.fetchDataIfNeeded();
-    }
-
-    componentDidMount(){
-        this.fetchDataIfNeeded();
-    }
 
     render(){
+
+        this.fetchDataIfNeeded();
+
         const { fetchedMovies, fetchedTV } = this.state;
         const { SRC } = this.props;
 
-        return ( SRC === 'movies' && this.state.fetchedMovies || SRC === 'Tv' && this.state.fetchedTV ) ? (
+
+        return ( SRC === 'movies' && fetchedMovies || SRC === 'Tv' && fetchedTV ) ? (
             <Fragment>
                 <Header />
                 <HomeMain />

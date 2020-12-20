@@ -13,14 +13,19 @@ class HeaderSlide extends React.Component {
                 this.movieGenre = genre.name;
             }
         }
+
+
     }
 
     render(){
+
+        const { movie } = this.props;
+
         return (
             <HSlide movie={this.props.movie} >
                 <div css={movieDetailsCSS} >
                     <p className="lead">Latest</p>
-                    <h1>{this.props.movie.title}</h1>
+                    <h1>{movie.title ? movie.title : movie.name }</h1>
                     <p css={genreRatingCSS} >{`${this.movieGenre} | ${this.props.movie.vote_average} Rating`}</p>
                 </div>
             </HSlide>
@@ -61,7 +66,10 @@ const genreRatingCSS = css`
 `;
 
 const mapStateToProps = (state) => {
-    return { totGenres: state.movieGenres };
+
+    const totGenres = state.SRC === 'Tv' ? state.TvGenres : state.movieGenres;
+
+    return { totGenres };
 }
 
 export default connect(mapStateToProps)(HeaderSlide);
