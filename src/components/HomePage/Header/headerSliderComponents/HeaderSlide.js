@@ -13,8 +13,6 @@ class HeaderSlide extends React.Component {
                 this.movieGenre = genre.name;
             }
         }
-
-
     }
 
     render(){

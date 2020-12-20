@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.scss';
 
 class Navbar extends React.Component {
@@ -19,7 +20,9 @@ class Navbar extends React.Component {
                         <div className="right-icons">
                             <a href="#" className="home-icon"></a> {/* Make Link*/}
                             <a href="#" className="user-icon"></a>
-                            <a href="#" className="explore-icon"></a>
+                            <Link to="/abc" className="explore-icon">
+                                
+                            </Link>
                         </div>
 
                     </div>

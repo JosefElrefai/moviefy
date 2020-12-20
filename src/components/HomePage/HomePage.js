@@ -57,7 +57,7 @@ class HomePage extends React.Component {
         const { SRC } = this.props;
 
 
-        return ( SRC === 'movies' && fetchedMovies || SRC === 'Tv' && fetchedTV ) ? (
+        return ( (SRC === 'movies' && fetchedMovies) || (SRC === 'Tv' && fetchedTV) ) ? (
             <Fragment>
                 <Header />
                 <HomeMain />

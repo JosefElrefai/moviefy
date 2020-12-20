@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -12,14 +12,21 @@ class App  extends React.Component {
         AOS.init({duration: 2000, once: false});
     }
 
+    ttt(){
+        return <div>alohamoha</div>;
+    }
+
     render(){
         return (
             <Fragment>
-                <HomePage />
+                <BrowserRouter>
+                    <Route path="/" exact component={HomePage} />
+                    <Route path="/abc" exact component={this.ttt} />
+                </BrowserRouter>
             </Fragment>
     
         );
     }
 };
 
-export default connect()(App);
+export default App;

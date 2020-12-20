@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';

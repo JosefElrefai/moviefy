@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-
 import { css } from '@emotion/react';
-import PBar from './PBar';
 import HSliderContentContainer from './HSliderContentContainer';
 
 class HeaderSlider extends React.Component {
