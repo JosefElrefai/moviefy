@@ -5,18 +5,13 @@ import { changeSRC } from '../../actions/SRC'
 
 class ChooseSRC extends React.Component {
 
-    srcFrom(SRC){
-        const { changeSRC } = this.props;
-        changeSRC(SRC);
-    }
+    srcFrom = (source) => {
+        this.props.changeSRC(source);
+    };
 
     render(){
         const { children } = this.props;
-        return (
-            <Fragment>
-                { children({ srcFrom: this.srcFrom }) }
-            </Fragment>
-        );
+        return children({ srcFrom: this.srcFrom });
     }
 }
 

@@ -1,17 +1,26 @@
-import { GET_TV_LATEST, GET_TV_POPULAR, GET_TV_TOP_RATED, GET_TV_GENRES } from '../actions/actionTypes';
+import { GET_TV_POPULAR, GET_TV_TOP_RATED, GET_TV_GENRES, GET_TV_AIRING_TODAY, GET_TV_ON_AIR } from '../actions/actionTypes';
 
-export const TvTopRated = (state = [], action) => {
+export const TvAiringToday = (state = [], action) => {
     switch(action.type){
-        case GET_TV_TOP_RATED:
+        case GET_TV_AIRING_TODAY:
             return action.payload;
         default:
             return state;
     }
 }
 
-export const TvLatest = (state = [], action) => {
+export const TvOnAir = (state = [], action) => {
     switch(action.type){
-        case GET_TV_LATEST:
+        case GET_TV_ON_AIR:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const TvTopRated = (state = [], action) => {
+    switch(action.type){
+        case GET_TV_TOP_RATED:
             return action.payload;
         default:
             return state;

@@ -189,7 +189,7 @@ const gapDivCSS = css`
 
 const mapStateToProps = (state, props) => {
 
-    const movies = _.result(state, props.ImgsFrom);
+    const movies = _.result(state, props.itemsFrom);
 
     return { totalMovies: movies };
 

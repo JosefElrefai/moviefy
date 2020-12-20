@@ -33,7 +33,7 @@ const ItemsSlider = (props) => {
             <Slider height={props.height} width={props.width} >
                 <ItemsSliderContent 
                     count={maxVisibleSlides}
-                    ImgsFrom={props.imgsFrom} 
+                    itemsFrom={props.itemsFrom} 
                     translateNow={translateNow} 
                     clearTranslateNow={() => clearTranslateNow()} 
                     changeVisibleSlides={(num) => changeVisibleSlides(num)}
