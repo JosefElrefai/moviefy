@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import HomePage from '../HomePage/HomePage';
+import DiscoverPage from '../DiscoverPage/DiscoverPage';
 import '../../index.scss'
 
 class App  extends React.Component {
@@ -21,7 +22,7 @@ class App  extends React.Component {
             <Fragment>
                 <BrowserRouter>
                     <Route path="/" exact component={HomePage} />
-                    <Route path="/abc" exact component={this.ttt} />
+                    <Route path="/discover" exact component={DiscoverPage} />
                 </BrowserRouter>
             </Fragment>
     

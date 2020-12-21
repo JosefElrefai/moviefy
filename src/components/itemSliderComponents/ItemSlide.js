@@ -11,7 +11,7 @@ const ItemSlide = (props) =>  {
     let genres = '';
     if(props.movie){
 
-        img = `https://image.tmdb.org/t/p/w154/${props.movie.poster_path}`;
+        img = `https://image.tmdb.org/t/p/w342/${props.movie.poster_path}`;
         title = props.movie.title ? props.movie.title : props.movie.name;
 
         let genreOne;
