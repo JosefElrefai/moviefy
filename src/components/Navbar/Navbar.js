@@ -18,9 +18,9 @@ class Navbar extends React.Component {
                         </div>
 
                         <div className="right-icons">
-                            <a href="#" className="home-icon"></a> {/* Make Link*/}
+                            <Link to="/" className="home-icon"></Link>
                             <a href="#" className="user-icon"></a>
-                            <Link to="/abc" className="explore-icon">
+                            <Link to="/discover" className="explore-icon">
                                 
                             </Link>
                         </div>

@@ -38,8 +38,8 @@ const ItemSlide = (props) =>  {
         <div css={movieCSS} >
             <MovieImage image={img} ></MovieImage>
             <div>
-                <h4>{title}</h4>
-                <p>{genres}</p>
+                <h4 css={titleCSS} >{title}</h4>
+                <p css={genresCSS} >{genres}</p>
             </div>
         </div>
     ); 
@@ -62,6 +62,15 @@ const movieCSS = css`
         opacity: 1;
         transform: scale(1.13);
     }`;
+
+const titleCSS = css`
+    font-weight: 500;
+`;
+
+const genresCSS = css`
+    font-weight: 300;
+    color: #ccc;
+`;
 
 
 const MovieImage = styled.div`
