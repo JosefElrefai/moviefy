@@ -53,7 +53,7 @@ class HomePage extends React.Component {
 
         this.fetchDataIfNeeded();
 
-        const { fetchedMovies, fetchedTV } = this.state;
+        const { fetchedMovies, fetchedTV } = this.state; //resets on UnMount change to checking movies.lenght length 
         const { SRC } = this.props;
 
 
