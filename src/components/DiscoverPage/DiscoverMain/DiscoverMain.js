@@ -25,8 +25,6 @@ const DiscoverMain = () => {
 
             movieSearchValues.current[key] = value;
         }
-        
-        console.log(movieSearchValues.current);
 
     }, [queryString]);
 

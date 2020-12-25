@@ -4,34 +4,53 @@ import { useHistory, useLocation } from 'react-router-dom';
 const MoviesForm = () => {
 
     const history = useHistory(); //put history in file
-    const [formValues, setFormValues] = useState( { sort_by: '', people_inv: '' } );
+    const [formValues, setFormValues] = useState( { sort_by: '', people_inv: '' } ); //default form values
+
+
+
+    const getURLSearchStr = () => {
+        let urlSearchString = '?';
+        let andSign = ''; //sets after first loop
+
+        for (const [key, value] of Object.entries(formValues)) {
+            value !== '' && (urlSearchString += `${andSign}${key}=${value}` );
+            andSign = '&';
+        }
+
+        return urlSearchString;
+    }
 
     const ck = (e) => {
         e.preventDefault();
+        getURLSearchStr();
 
-        history.push(`?movieNamee=asd`);
+        history.push(getURLSearchStr());
     };
 
-    const handleInputChange = (e) => {
-        console.log(formValues);
-        setFormValues( { formValues... ,[e.target.name]: e.target.value } )
+    const handleFormChange = (e) => {
+        setFormValues( { ...formValues, [e.target.name]: e.target.value } );
     }
 
+    console.log(formValues)
     return (
         <form style={{textAlign: 'center'}} > 
-            <select name="sort_by" >
-                <option>Sort By</option>
-                <option value="moslyyy" >Most Popular</option>
-                <option>Most Revenue</option>
-                <option>Release Date</option>
-                <option>malo</option>
-                <option>malo</option>
-                <option>malo</option>
+
+            <select name="sort_by" value={formValues.sort_by} onChange={handleFormChange} >
+                <option value="" >Sort By</option>
+                <option value="popular" >Most Popular</option>
+                <option value="revenue" >Most Revenue</option>
+                <option value="latest" >Release Date</option>
             </select>
 
-            <input type="text" name="people_inv" placeholder="people inv." value={formValues.people_inv} onChange={handleInputChange} ></input>
+            <input
+                type="text"
+                name="people_inv"
+                placeholder="People inv."
+                value={formValues.people_inv}
+                onChange={handleFormChange}
+            ></input>
 
-            <button  >
+            <button onClick={ck} >
                 submit 
             </button>
         </form>
