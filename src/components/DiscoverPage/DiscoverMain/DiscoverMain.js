@@ -33,7 +33,7 @@ const DiscoverMain = () => {
     return(
         <div id="discover-main" className="py-3">
             <UnderLine>
-                {() => ( <h1 className="discover-title" >Discover</h1> )}
+                {() => ( <h1 className="discover-title" >Find The Movies You Like</h1> )}
             </UnderLine>
 
             <MoviesForm />

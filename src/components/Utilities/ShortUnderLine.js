@@ -17,6 +17,7 @@ const UnderLine = styled.div`
     height: 2px;
     margin: 0 auto;
     margin-top: 1.2rem;
+    margin-bottom: 3.5rem;
 
 `;
 

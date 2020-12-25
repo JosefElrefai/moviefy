@@ -8,7 +8,39 @@
     .discover-title{
         margin-top: 1rem;
         font-size: 2.5rem;
-        letter-spacing: 1px;
+        
         font-weight: 300;
+    }
+
+    >.discover-form{
+        text-align: center;
+
+        >.form-comp{
+            background: #131517;
+            color: set-text-color(#131517);
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            margin: 1rem;
+            padding: .5rem 0;
+
+            &::placeholder{
+                color: #aaa;
+            }
+        }
+
+        >.form-submit{
+            margin-top: 2rem;
+            width: 8rem;
+            height: 2.5rem;
+            background: #131517;
+            color: set-text-color(#131517);
+            border: 1px solid $secondary-color;
+            border-radius: 30px;
+            
+
+
+
+        }
     }
 }
