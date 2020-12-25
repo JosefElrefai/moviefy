@@ -22,7 +22,7 @@ class App  extends React.Component {
             <Fragment>
                 <BrowserRouter>
                     <Route path="/" exact component={HomePage} />
-                    <Route path="/discover/:firstparam?" exact component={DiscoverPage} />
+                    <Route path="/discover" exact component={DiscoverPage} />
                 </BrowserRouter>
             </Fragment>
     

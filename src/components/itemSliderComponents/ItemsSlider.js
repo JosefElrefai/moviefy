@@ -28,7 +28,7 @@ const ItemsSlider = (props) => {
     return (
 
         <div css={containerCSS}>
-            <i className="fas fa-chevron-left fa-3x" css={leftChevronCSS} onClick={() => translateRight()} ></i>
+            <i className="fas fa-chevron-left fa-3x" css={leftChevronCSS} onClick={translateRight} ></i>
             
             <Slider height={props.height} width={props.width} >
                 <ItemsSliderContent 
@@ -40,7 +40,7 @@ const ItemsSlider = (props) => {
                     />
             </Slider>
 
-            <i className="fas fa-chevron-right fa-3x" css={rightChevronCSS} onClick={() => translateLeft()} ></i>
+            <i className="fas fa-chevron-right fa-3x" css={rightChevronCSS} onClick={translateLeft} ></i>
         </div>
 
     );

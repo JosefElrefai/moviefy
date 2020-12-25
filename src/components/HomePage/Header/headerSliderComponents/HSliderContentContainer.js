@@ -175,21 +175,21 @@ class HSliderContentContainer extends React.Component {
 
 
         if(window.PointerEvent){
-            sliderContent.addEventListener('pointerdown', (e) => this.handlePointerDown(e));
-            sliderContent.addEventListener('pointermove', (e) => this.handlePointerMove(e));
-            sliderContent.addEventListener('pointerup', () => this.handlePointerUp());
+            sliderContent.addEventListener('pointerdown', this.handlePointerDown);
+            sliderContent.addEventListener('pointermove', this.handlePointerMove);
+            sliderContent.addEventListener('pointerup', this.handlePointerUp);
 
         } else {
-            sliderContent.addEventListener('mousedown', (e) => this.handlePointerDown(e));
-            sliderContent.addEventListener('mousemove', (e) => this.handlePointerMove(e));
-            sliderContent.addEventListener('mouseup', () => this.handlePointerUp());
+            sliderContent.addEventListener('mousedown', this.handlePointerDown);
+            sliderContent.addEventListener('mousemove', this.handlePointerMove);
+            sliderContent.addEventListener('mouseup', this.handlePointerUp);
             
-            sliderContent.addEventListener('touchdown', (e) => this.handlePointerDown(e));
-            sliderContent.addEventListener('touchmove', (e) => this.handlePointerMove(e));
-            sliderContent.addEventListener('touchup', () => this.handlePointerUp());
+            sliderContent.addEventListener('touchdown', this.handlePointerDown);
+            sliderContent.addEventListener('touchmove', this.handlePointerMove);
+            sliderContent.addEventListener('touchup', this.handlePointerUp);
 
         }
-        sliderContent.addEventListener('transitionend', () => this.handleTransitionEnd());
+        sliderContent.addEventListener('transitionend', this.handleTransitionEnd);
     }
 
     handleResize = () => { //making slider responsive
@@ -200,33 +200,33 @@ class HSliderContentContainer extends React.Component {
     }    
 
     componentDidMount(){
-        //setInterval(this.changeSlide(),2400);  
+        //setInterval(this.changeSlide(),2400);
         const sliderContent = document.querySelector('.h-slider-content');
         sliderContent.style.transform = `translateX(-${this.getWidth()}px)`;
         this.setUpTouch();
-        window.addEventListener('resize', () => this.handleResize());
+        window.addEventListener('resize', this.handleResize);
 
     }
 
     
-    componentWillUnmount(){ //only removes eventListeners
+    componentWillUnmount = () => { //only removes eventListeners
         const sliderContent = document.querySelector('.h-slider-content');
         if(window.PointerEvent){
-            sliderContent.removeEventListener('pointerdown', (e) => this.handlePointerDown(e));
-            sliderContent.removeEventListener('pointermove', (e) => this.handlePointerMove(e));
-            sliderContent.removeEventListener('pointerup', () => this.handlePointerUp());
+            sliderContent.removeEventListener('pointerdown', this.handlePointerDown);
+            sliderContent.removeEventListener('pointermove', this.handlePointerMove);
+            sliderContent.removeEventListener('pointerup', this.handlePointerUp);
         } else {
-            sliderContent.removeEventListener('mousedown', (e) => this.handlePointerDown(e));
-            sliderContent.removeEventListener('mousemove', (e) => this.handlePointerMove(e));
-            sliderContent.removeEventListener('mouseup', () => this.handlePointerUp());
+            sliderContent.removeEventListener('mousedown', this.handlePointerDown);
+            sliderContent.removeEventListener('mousemove', this.handlePointerMove);
+            sliderContent.removeEventListener('mouseup', this.handlePointerUp);
             
-            sliderContent.removeEventListener('touchdown', (e) => this.handlePointerDown(e));
-            sliderContent.removeEventListener('touchmove', (e) => this.handlePointerMove(e));
-            sliderContent.removeEventListener('touchup', () => this.handlePointerUp());
+            sliderContent.removeEventListener('touchdown', this.handlePointerDown);
+            sliderContent.removeEventListener('touchmove', this.handlePointerMove);
+            sliderContent.removeEventListener('touchup', this.handlePointerUp);
         }
 
-        sliderContent.removeEventListener('transitionend', () => this.handleTransitionEnd());
-        window.removeEventListener('resize', () => this.handleResize());
+        sliderContent.removeEventListener('transitionend', this.handleTransitionEnd);
+        window.removeEventListener('resize', this.handleResize);
     }
 
     render (){

@@ -23,7 +23,8 @@ class itemsSliderContent extends React.Component {
     
     
     componentWillUnmount() {
-        document.querySelector(`#slider-content${this.id}`).removeEventListener('transitionend', (e) => this.handleTransitioinEnd(e));
+        document.querySelector(`#slider-content${this.id}`).removeEventListener('transitionend', this.handleTransitioinEnd);
+        window.addEventListener('resize', this.handleRezise, true);
     } 
     
     handleTransitioinEnd = (e) => {
@@ -74,8 +75,8 @@ class itemsSliderContent extends React.Component {
     }
     
     setEventListeners() {
-        document.querySelector(`#slider-content${this.id}`).addEventListener('transitionend',(e) => this.handleTransitioinEnd(e));
-        window.addEventListener('resize',() => this.handleRezise());
+        document.querySelector(`#slider-content${this.id}`).addEventListener('transitionend', this.handleTransitioinEnd);
+        window.addEventListener('resize', this.handleRezise, true);
     }
     
     updateGapWidth() {
