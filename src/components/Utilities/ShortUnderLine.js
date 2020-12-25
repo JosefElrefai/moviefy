@@ -13,10 +13,10 @@ export default (props) => {
 
 const UnderLine = styled.div`
     background: white;
-    width: 2.5rem;
+    width: 7%;
     height: 2px;
     margin: 0 auto;
-    margin-top: 1.2rem;
+    margin-top: 2rem;
     margin-bottom: 3.5rem;
 
 `;

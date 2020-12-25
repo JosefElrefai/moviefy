@@ -8,7 +8,6 @@ import MoviesForm from './MoviesForm/MoviesForm';
 const DiscoverMain = () => {
 
     const queryString = useLocation().search;
-    console.log(queryString);
     const movieSearchValues = useRef( { sort_by: 'popular', people_inv: 'mission', genres: null } ); //Default values (needed?)
 
 
@@ -18,9 +17,7 @@ const DiscoverMain = () => {
 
     useEffect(() => { //put in DiscoverMovies components
         const searchParams = new URLSearchParams(queryString);
-        console.log(movieSearchValues.current);
 
-        
         for (const [key, value] of searchParams) {
 
             movieSearchValues.current[key] = value;
@@ -28,15 +25,13 @@ const DiscoverMain = () => {
 
     }, [queryString]);
 
-
-
     return(
         <div id="discover-main" className="py-3">
             <UnderLine>
-                {() => ( <h1 className="discover-title" >Find The Movies You Like</h1> )}
+                {() => ( <h1 className="discover-title" >Find Movies You Like</h1> )}
             </UnderLine>
 
-            <MoviesForm />
+            <MoviesForm /> {/* Changes Url so that discoverMovies shows right movies */}
 
 
         </div>

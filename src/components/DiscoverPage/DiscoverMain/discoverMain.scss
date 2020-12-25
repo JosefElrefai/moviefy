@@ -29,17 +29,14 @@
             }
         }
 
-        >.form-submit{
-            margin-top: 2rem;
-            width: 8rem;
-            height: 2.5rem;
-            background: #131517;
-            color: set-text-color(#131517);
-            border: 1px solid $secondary-color;
-            border-radius: 30px;
+        >.submit{
+            width: 6rem;
+            background: $secondary-color;
+            color: white;
             
-
-
+            border: 1px double $secondary-color;
+            border-radius: 2px;
+            
 
         }
     }

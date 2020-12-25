@@ -72,9 +72,8 @@ const MoviesForm = () => {
                 className="form-comp"
             ></input>
 
-            <br />
 
-            <button className="form-submit" >
+            <button className="form-comp submit" >
                 FIND
             </button>
         </form>
