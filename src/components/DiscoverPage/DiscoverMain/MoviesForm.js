@@ -37,7 +37,7 @@ const MoviesForm = () => {
     return (
         <form onSubmit={handleSubmit} className="discover-form" > 
 
-            <select name="sort_by" value={formValues.sort_by} onChange={handleFormChange} className="form-comp">
+            <select name="sort_by" value={formValues.sort_by} onChange={handleFormChange} className="form-comp" au >
                 <option value="" >Sort By</option>
                 <option value="popular" >Most Popular</option>
                 <option value="rating" >Highest Rating</option>
@@ -51,6 +51,7 @@ const MoviesForm = () => {
                 placeholder="People inv."
                 value={formValues.people_inv}
                 onChange={handleFormChange}
+                autoComplete="off"
                 className="form-comp"
             ></input>
 
@@ -60,6 +61,7 @@ const MoviesForm = () => {
                 placeholder="Genres"
                 value={formValues.genres}
                 onChange={handleFormChange}
+                autoComplete="off"
                 className="form-comp"
             ></input>
 
@@ -69,6 +71,7 @@ const MoviesForm = () => {
                 placeholder="Keywords"
                 value={formValues.key_words}
                 onChange={handleFormChange}
+                autoComplete="off"
                 className="form-comp"
             ></input>
 

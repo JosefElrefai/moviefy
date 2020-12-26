@@ -3,7 +3,6 @@
 #discover-main{
     background-color: #131517;
     color: set-text-color(#131517);
-    height: 100vh;
 
     .discover-title{
         margin-top: 1rem;
@@ -12,8 +11,9 @@
         font-weight: 300;
     }
 
-    >.discover-form{
+    .discover-form{
         text-align: center;
+        margin-bottom: 4rem;
 
         >.form-comp{
             background: #131517;
@@ -38,6 +38,21 @@
             border-radius: 2px;
             
 
+        }
+    }
+
+    .discover-grid{
+        background: $main-color;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        justify-content: space-between;
+        gap: 2rem 0;
+
+        .moff{
+            width: 8rem;
+            height: 11rem;
+            background-color: grey;
+            justify-self: center;
         }
     }
 }
