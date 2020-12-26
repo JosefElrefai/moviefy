@@ -8,9 +8,6 @@ import DiscoverMovies from './DiscoverMovies';
 
 const DiscoverMain = () => {
 
-    const queryString = useLocation().search;
-    const movieSearchValues = useRef( { sort_by: 'popular', people_inv: 'mission', genres: null } ); //Default values (needed?)
-
     return(
         <div id="discover-main" className="py-3">
             <div className="container">
@@ -22,7 +19,7 @@ const DiscoverMain = () => {
                 <MoviesForm /> {/* Changes Url so that discoverMovies shows right movies */}
 
                 <DiscoverMovies />
-                
+
             </div>
         </div>
     );

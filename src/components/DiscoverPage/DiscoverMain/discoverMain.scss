@@ -3,6 +3,7 @@
 #discover-main{
     background-color: #131517;
     color: set-text-color(#131517);
+    min-height: 100vh;
 
     .discover-title{
         margin-top: 1rem;
@@ -42,16 +43,20 @@
     }
 
     .discover-grid{
-        background: $main-color;
+        background: #222;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         justify-content: space-between;
         gap: 2rem 0;
-        padding: 1rem;
+        padding: 2.5rem 1rem;
+
+        >*{
+            justify-self: center;
+        }
 
         .moff{
             width: 8rem;
-            height: 11rem;
+            height: 16rem;
             background-color: grey;
             justify-self: center;
         }
