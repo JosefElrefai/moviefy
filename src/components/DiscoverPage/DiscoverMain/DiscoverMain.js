@@ -6,7 +6,7 @@ import './discoverMain.scss';
 import MoviesForm from './MoviesForm';
 import DiscoverMovies from './DiscoverMovies';
 
-const DiscoverMain = () => {
+const DiscoverMain = () => { 
 
     return(
         <div id="discover-main" className="py-3">
@@ -16,9 +16,9 @@ const DiscoverMain = () => {
                     {() => ( <h1 className="discover-title" >Find Movies You Like</h1> )}
                 </UnderLine>
 
-                <MoviesForm /> {/* Changes Url so that discoverMovies shows right movies */}
+                <MoviesForm /> {/* Changes URL so that discoverMovies shows right movies */}
 
-                <DiscoverMovies />
+                <DiscoverMovies /> {/* Uses URL to fetch right movies */}
 
             </div>
         </div>

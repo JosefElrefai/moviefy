@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import './homeMain.scss';
-import ItemsSlider from '../../itemSliderComponents/ItemsSlider';
+import ItemsSlider from '../../Utilities/itemSliderComponents/ItemsSlider';
 import ChooseSRC from '../../Utilities/ChooseSRC';
 
 

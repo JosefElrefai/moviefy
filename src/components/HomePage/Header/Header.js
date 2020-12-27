@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import Navbar from '../../Navbar/Navbar';
+import Navbar from '../../Utilities/Navbar/Navbar';
 import HeaderSlider from './headerSliderComponents/HeaderSlider';
 import { connect } from 'react-redux';
 

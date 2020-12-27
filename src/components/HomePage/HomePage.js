@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from './Header/Header';
 import HomeMain from './HomeMain/HomeMain';
-import Footer from '../Footer/Footer';
+import Footer from '../Utilities/Footer/Footer';
 import { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres, fetchMoviesNowPlaying } from '../../actions/fetchMovies';
 import { fetchTvPopular, fetchTvGenres, fetchTvAiringToday, fetchTvOnAir, fetchTvTopRated } from '../../actions/fetchTV';
 

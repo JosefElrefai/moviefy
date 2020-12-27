@@ -1,18 +1,16 @@
 import React, { Fragment } from 'react';
 
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Utilities/Navbar/Navbar';
 import DiscoverMain from './DiscoverMain/DiscoverMain';
 
-class DiscoverPage extends React.Component {
+const DiscoverPage = () => (
+    
+    <Fragment>
+        <Navbar />
+        <DiscoverMain />    
+    </Fragment>
+);
+    
 
-    render(){
-        return (
-            <Fragment>
-                <Navbar />
-                <DiscoverMain />    
-            </Fragment>
-        );
-    }
-}
 
 export default DiscoverPage;

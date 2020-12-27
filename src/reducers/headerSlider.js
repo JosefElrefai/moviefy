@@ -1,4 +1,4 @@
-import { EDIT_H_ACTIVE_INDEX, EDIT_H_MOVIES_COUNT, EDIT_H_TRANSLATE_V } from '../../actions/actionTypes';
+import { EDIT_H_ACTIVE_INDEX, EDIT_H_MOVIES_COUNT, EDIT_H_TRANSLATE_V } from '../actions/actionTypes';
 
 export const headerActiveIndex = (state = 0, action) => {
     switch(action.type){

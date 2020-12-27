@@ -1,5 +1,5 @@
-import movieDB from '../../apis/movieDB';
-import { GET_M_TOP_RATED, GET_M_UPCOMING, GET_M_POPULAR, GET_M_GENRES, GET_M_NOW_PLAYING } from '../actionTypes';
+import movieDB from '../apis/movieDB';
+import { GET_M_TOP_RATED, GET_M_UPCOMING, GET_M_POPULAR, GET_M_GENRES, GET_M_NOW_PLAYING } from './actionTypes';
 
 export const fetchMoviesTopRated = () => async (dispatch) => {
     const resp = await movieDB.get('/movie/top_rated', {

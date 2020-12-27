@@ -28,15 +28,15 @@ const Footer = () => {
                             <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="logo" width="200"/>
                         </div>
                         <div className="socials">
-                            <a href="https://twitter.com/themoviedb" target="_blank" rel="noreferrer" data-aos="fade-up" data-aos-delay="2300">
+                            <a href="https://twitter.com/themoviedb" target="_blank" rel="noreferrer" data-aos="fade-up" data-aos-delay="900">
                                 <i className="fab fa-twitter fa-lg"></i>
                             </a>
 
-                            <a href="https://www.facebook.com/themoviedb" target="_blank" rel="noreferrer" data-aos="fade-up" data-aos-delay="2600">
+                            <a href="https://www.facebook.com/themoviedb" target="_blank" rel="noreferrer" data-aos="fade-up" data-aos-delay="1200">
                                 <i className="fab fa-facebook fa-lg"></i>
                             </a>
 
-                            <a href="https://www.themoviedb.org/documentation/api" target="_blank" rel="noreferrer" data-aos="fade-up" data-aos-delay="2900">
+                            <a href="https://www.themoviedb.org/documentation/api" target="_blank" rel="noreferrer" data-aos="fade-up" data-aos-delay="1500">
                                 <i className="fas fa-code fa-lg"></i>
                             </a>
                         </div>
