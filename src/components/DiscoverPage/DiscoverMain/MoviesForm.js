@@ -39,10 +39,10 @@ const MoviesForm = () => {
 
             <select name="sort_by" value={formValues.sort_by} onChange={handleFormChange} className="form-comp" au >
                 <option value="" >Sort By</option>
-                <option value="popular" >Most Popular</option>
-                <option value="rating" >Highest Rating</option>
-                <option value="revenue" >Highest Revenue</option>
-                <option value="latest" >Release Date</option>
+                <option value="popularity.desc" >Most Popular</option>
+                <option value="vote_average.desc" >Highest Rating</option>
+                <option value="revenue.desc" >Highest Revenue</option>
+                <option value="release_date.desc" >Release Date</option>
             </select>
 
             <input

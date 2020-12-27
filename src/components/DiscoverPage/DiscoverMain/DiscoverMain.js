@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import UnderLine from '../../Utilities/ShortUnderLine';
-import { useHistory, useLocation } from 'react-router-dom';
 
 import './discoverMain.scss';
 import MoviesForm from './MoviesForm';
-import DiscoverMovies from './DiscoverMovies';
+import DiscoverMoviesGrid from './DiscoverMoviesGrid';
 
 const DiscoverMain = () => { 
 
@@ -18,7 +17,7 @@ const DiscoverMain = () => {
 
                 <MoviesForm /> {/* Changes URL so that discoverMovies shows right movies */}
 
-                <DiscoverMovies /> {/* Uses URL to fetch right movies */}
+                <DiscoverMoviesGrid /> {/* Uses URL to fetch right movies */}
 
             </div>
         </div>

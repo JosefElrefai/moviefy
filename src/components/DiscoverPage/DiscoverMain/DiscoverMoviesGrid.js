@@ -1,29 +1,38 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import Slide from '../../Utilities/Slide';
+import movieDB from '../../../apis/movieDB';
+import { connect } from 'react-redux';
 
 
 const DiscoverMovies = () => {
     const imgBaseURL = useRef('https://image.tmdb.org/t/p/w342');
     const [moviesFetched, setMoviesFetched] = useState(false);
     const queryString = useLocation().search;
-    const movieSearchValues = useRef( { sort_by: 'popular', people_inv: 'mission', genres: null } ); //Default values (needed?)
+    const movieSearchValues = useRef( { sort_by: 'popular', people_inv: '', genres: '', key_words: '' } );
+    const movieSearchValuesIds = useRef( { sort_by: '' } );
 
+
+    
 
     useEffect(() => {
         const searchParams = new URLSearchParams(queryString);
-        console.log(movieSearchValues.current);
 
         for (const [key, value] of searchParams) {
 
             movieSearchValues.current[key] = value;
             
         }
-        console.log(movieSearchValues)
+        console.log(movieSearchValues.current)
 
     }, [queryString]);
 
-    
+
+    const renderMovies = () => {
+        
+    }
+
     return (
 
         <Fragment>
@@ -48,4 +57,8 @@ const DiscoverMovies = () => {
     
 }
 
-export default DiscoverMovies;
+const mapStateToProps = (state) => {
+    return { discoverMovies: state.discoverMovies };
+}
+
+export default connect()(DiscoverMovies);
