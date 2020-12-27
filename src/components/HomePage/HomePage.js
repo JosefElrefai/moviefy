@@ -7,10 +7,14 @@ import Footer from '../Utilities/Footer/Footer';
 import { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres, fetchMoviesNowPlaying } from '../../actions/fetchMovies';
 import { fetchTvPopular, fetchTvGenres, fetchTvAiringToday, fetchTvOnAir, fetchTvTopRated } from '../../actions/fetchTV';
 
-class HomePage extends React.Component {    
+class HomePage extends React.Component {
+    constructor(props){
+        super(props);
 
-    state = { fetchedMovies: false, fetchedTV: false }
-    
+        !!props.moviesPopular.length && (this.fetchedMovies = true);
+        !!props.TvPopular.length && (this.fetchedTV = true);
+    }
+
     async fetchMovies(){
         await Promise.all(
             [
@@ -21,7 +25,7 @@ class HomePage extends React.Component {
                 this.props.fetchMoviesGenres()
             ]
         )
-        this.setState({ fetchedMovies: true });
+        this.fetchedMovies = true;
     }
 
     async fetchTV(){
@@ -34,30 +38,30 @@ class HomePage extends React.Component {
                 this.props.fetchTvGenres()
             ]
         )
-        this.setState({ fetchedTV: true });
+        this.fetchedTV = true;
     }
 
     fetchDataIfNeeded(){
         const { SRC } = this.props;
 
-        if( SRC === 'movies' && !this.state.fetchedMovies ){
+        if( SRC === 'movies' && !this.fetchedMovies ){
             this.fetchMovies();
 
-        } else if( SRC === 'Tv' && !this.state.fetchedTV){
+        } else if( SRC === 'Tv' && !this.fetchedTV ){
             this.fetchTV();
 
         }
     }
 
+
     render(){
 
         this.fetchDataIfNeeded();
 
-        const { fetchedMovies, fetchedTV } = this.state; //resets on UnMount change to checking movies.lenght length 
         const { SRC } = this.props;
 
 
-        return ( (SRC === 'movies' && fetchedMovies) || (SRC === 'Tv' && fetchedTV) ) ? (
+        return ( (SRC === 'movies' && this.fetchedMovies) || (SRC === 'Tv' && this.fetchedTV) ) ? (
             <Fragment>
                 <Header />
                 <HomeMain />
@@ -68,7 +72,7 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { SRC: state.SRC };
+    return { SRC: state.SRC, moviesPopular: state.moviesPopular, TvPopular: state.TvPopular };
 }
 
 const mapActionsToProps = {
