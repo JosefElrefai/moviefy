@@ -11,20 +11,50 @@ const DiscoverMovies = () => {
     const [moviesFetched, setMoviesFetched] = useState(false);
     const queryString = useLocation().search;
     const movieSearchValues = useRef( { sort_by: 'popular', people_inv: '', genres: '', key_words: '' } );
-    const movieSearchValuesIds = useRef( { sort_by: '' } );
 
 
-    
+    const respondingApiValues = {
+        sort_by: '',
+        people_inv: '',
+        genres: '',
+        key_words: ''
+    };
+
+    const getRespondingApiValues = {
+        getKeywordId: async (query) => {
+            const resp = await movieDB.get('/search/keyword', {
+                params: {
+                    api_key: process.env.REACT_APP_API_KEY,
+                    query: query
+                }
+            });
+
+            return resp.data.results.find(k => k.name === movieSearchValues.current.key_words).id;
+        },
+
+        
+
+    };
 
     useEffect(() => {
+        
+
+        
+    }, [movieSearchValues.current]);
+
+    useEffect(() => {   //Gets new search params and stores them in movieSearchValues
         const searchParams = new URLSearchParams(queryString);
 
         for (const [key, value] of searchParams) {
 
             movieSearchValues.current[key] = value;
-            
         }
-        console.log(movieSearchValues.current)
+        console.log(movieSearchValues.current);
+
+        (async () => {
+            const keywordId = await getRespondingApiValues.getKeywordId(movieSearchValues.current.key_words);
+            console.log(keywordId);
+            })();
 
     }, [queryString]);
 
@@ -61,4 +91,4 @@ const mapStateToProps = (state) => {
     return { discoverMovies: state.discoverMovies };
 }
 
-export default connect()(DiscoverMovies);
+export default connect(mapStateToProps)(DiscoverMovies);
