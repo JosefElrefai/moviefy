@@ -1,8 +1,8 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Slide from '../../Utilities/Slide';
-import movieDB from '../../../apis/movieDB';
+import Slide from '../../../Utilities/Slide';
+import movieDB from '../../../../apis/movieDB';
 import { connect } from 'react-redux';
 
 
@@ -20,27 +20,22 @@ const DiscoverMovies = () => {
         key_words: ''
     };
 
-    const getRespondingApiValues = {
-        getKeywordId: async (query) => {
-            const resp = await movieDB.get('/search/keyword', {
-                params: {
-                    api_key: process.env.REACT_APP_API_KEY,
-                    query: query
-                }
-            });
+    // const getRespondingApiValues = {
+    //     getKeywordId: async (query) => {
+    //         const resp = await movieDB.get('/search/keyword', {
+    //             params: {
+    //                 api_key: process.env.REACT_APP_API_KEY,
+    //                 query: query
+    //             }
+    //         });
 
-            return resp.data.results.find(k => k.name === movieSearchValues.current.key_words).id;
-        },
+    //         if( resp.data.total_results === 0 ){
+    //             return null;
+    //         }
 
-        
-
-    };
-
-    useEffect(() => {
-        
-
-        
-    }, [movieSearchValues.current]);
+    //         return resp.data.results.find(k => k.name === movieSearchValues.current.key_words).id;
+    //     }
+    // };
 
     useEffect(() => {   //Gets new search params and stores them in movieSearchValues
         const searchParams = new URLSearchParams(queryString);

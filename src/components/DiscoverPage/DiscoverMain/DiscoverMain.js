@@ -3,7 +3,7 @@ import UnderLine from '../../Utilities/ShortUnderLine';
 
 import './discoverMain.scss';
 import MoviesForm from './MoviesForm';
-import DiscoverMoviesGrid from './DiscoverMoviesGrid';
+import DiscoverMoviesGrid from './DiscoverMoviesGrid/DiscoverMoviesGrid';
 
 const DiscoverMain = () => { 
 
