@@ -4,7 +4,8 @@ import { GET_DISCOVER } from './actionTypes';
 export const fetchDiscoverMovies = (searchParams) => async (dispatch) => { // MergreSearchParams
     const staticParams = {
         api_key: process.env.REACT_APP_API_KEY,
-        language: 'en-US'
+        language: 'en-US',
+        page: 1
     };
 
     const totParams = { ...staticParams, ...searchParams };

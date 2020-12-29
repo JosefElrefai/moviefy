@@ -9,6 +9,7 @@ import getRespApiValues from './getRespondingApiValues';
 
 const DiscoverMovies = (props) => {
     const imgBaseURL = useRef('https://image.tmdb.org/t/p/w342');
+    const defaulPosterURL = useRef('https://media.comicbook.com/files/img/default-movie.png?auto=webp')
     const [moviesFetched, setMoviesFetched] = useState(false);
     const queryString = useLocation().search;
     const movieSearchValues = useRef( { sort_by: 'popularity.desc', with_people: '', genres: '', with_keywords: '' } );
@@ -40,7 +41,7 @@ const DiscoverMovies = (props) => {
             <Slide
                 key={movie.id}
                 title={movie.title}
-                imgURL={`${imgBaseURL.current}/${movie.poster_path}`}
+                imgURL={ movie.poster_path ? `${imgBaseURL.current}/${movie.poster_path}` : defaulPosterURL.current }
             />
         ));
     }

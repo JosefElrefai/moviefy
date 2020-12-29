@@ -18,7 +18,12 @@ export default async ( movieSearchValues ) => {
             return null;
         }
 
-        return resp.data.results.find(kWord => kWord.name === with_keywords).id;
+        const keyWord = resp.data.results.find(kWord => kWord.name === with_keywords);
+        if(!keyWord){
+            return null;
+        }
+
+        return keyWord.id;
     }
 
     const getPersonID = async (query) => {
@@ -33,7 +38,12 @@ export default async ( movieSearchValues ) => {
             return null;
         }
 
-        return resp.data.results.find(person => person.name.toUpperCase() === with_people.toUpperCase()).id;
+        const person = resp.data.results.find(actor => actor.name === with_people);
+        if(!person){
+            return null;
+        }
+
+        return person.id;
     }
 
 
