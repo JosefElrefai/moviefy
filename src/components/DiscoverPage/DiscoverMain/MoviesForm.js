@@ -6,10 +6,10 @@ const MoviesForm = () => {
     const history = useHistory(); //put history in file
 
     //default form values, keys must be equal to name tag of responding element
-    const [formValues, setFormValues] = useState( { sort_by: '', with_people: '', genres: '', with_keywords: ''  } );
+    const [formValues, setFormValues] = useState( { sort_by: '', with_people: '', with_genres: '', with_keywords: ''  } );
 
     const clearFormValues = () => {
-            setFormValues( { sort_by: '', with_people: '', genres: '', with_keywords: ''} )
+            setFormValues( { sort_by: '', with_people: '', with_genres: '', with_keywords: ''} )
     }
 
     const calcURLSearchStr = () => {
@@ -37,7 +37,7 @@ const MoviesForm = () => {
     return (
         <form onSubmit={handleSubmit} className="discover-form" > 
 
-            <select name="sort_by" value={formValues.sort_by} onChange={handleFormChange} className="form-comp" au >
+            <select name="sort_by" value={formValues.sort_by} onChange={handleFormChange} className="form-comp" >
                 <option value="" >Sort By</option>
                 <option value="popularity.desc" >Most Popular</option>
                 <option value="vote_average.desc" >Highest Rating</option>
@@ -45,6 +45,29 @@ const MoviesForm = () => {
                 <option value="release_date.desc" >Release Date</option>
             </select>
 
+            <select name="with_genres" value={formValues.with_genres} onChange={handleFormChange} className="form-comp" >
+                <option value="">Genres</option>
+                <option value="28">Action</option>
+                <option value="12">Adventure</option>
+                <option value="16">Animation</option>
+                <option value="35">Comedy</option>
+                <option value="80">Crime</option>
+                <option value="99">Documentary</option>
+                <option value="18">Drama</option>
+                <option value="10751">Family</option>
+                <option value="14">Fantasy</option>
+                <option value="36">History</option>
+                <option value="27">Horror</option>
+                <option value="10402">Music</option>
+                <option value="9648">Mystery</option>
+                <option value="10749">Romance</option>
+                <option value="878">Science Fiction</option>
+                <option value="53">Thriller</option>
+                <option value="10752">War</option>
+                <option value="37">Western</option>
+                
+            </select>
+            
             <input
                 type="text"
                 name="with_people"
@@ -55,15 +78,15 @@ const MoviesForm = () => {
                 className="form-comp"
             ></input>
 
-            <input
+            {/* <input
                 type="text"
-                name="genres"
-                placeholder="Genres"
-                value={formValues.genres}
+                name="with_genres"
+                placeholder="with_genres"
+                value={formValues.with_genres}
                 onChange={handleFormChange}
                 autoComplete="off"
                 className="form-comp"
-            ></input>
+            ></input> */}
 
             <input
                 type="text"

@@ -10,8 +10,8 @@ import getRespApiValues from './getRespondingApiValues';
 const DiscoverMovies = (props) => {
     const imgBaseURL = useRef('https://image.tmdb.org/t/p/w342');
     const defaulPosterURL = useRef('https://media.comicbook.com/files/img/default-movie.png?auto=webp')
-    const [moviesFetched, setMoviesFetched] = useState(false);
     const queryString = useLocation().search;
+    const [fetching, setFetching] = useState(false);
     const movieSearchValues = useRef( { sort_by: 'popularity.desc', with_people: '', genres: '', with_keywords: '' } );
     const respApiValues = useRef( {} );
 
@@ -24,7 +24,7 @@ const DiscoverMovies = (props) => {
         }
         console.log(movieSearchValues.current);
         
-
+        
         (async () => {
             respApiValues.current = await getRespApiValues(movieSearchValues.current);
             console.log(respApiValues.current);

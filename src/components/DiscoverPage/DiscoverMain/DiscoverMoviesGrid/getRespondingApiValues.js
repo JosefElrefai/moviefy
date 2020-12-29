@@ -2,9 +2,9 @@ import movieDB from '../../../../apis/movieDB';
 
 export default async ( movieSearchValues ) => {
 
-    const { sort_by, with_people, genres, with_keywords } = movieSearchValues;
+    const { sort_by, with_people, with_genres, with_keywords } = movieSearchValues;
     console.log(movieSearchValues);
-    const respAPiValues = { sort_by };
+    const respAPiValues = { sort_by, with_genres };
 
     const getKeywordId = async (query) => {
         const resp = await movieDB.get('/search/keyword', {
@@ -18,7 +18,7 @@ export default async ( movieSearchValues ) => {
             return null;
         }
 
-        const keyWord = resp.data.results.find(kWord => kWord.name === with_keywords);
+        const keyWord = resp.data.results.find(kWord => kWord.name.toUpperCase() === with_keywords.toUpperCase());
         if(!keyWord){
             return null;
         }
@@ -38,13 +38,20 @@ export default async ( movieSearchValues ) => {
             return null;
         }
 
-        const person = resp.data.results.find(actor => actor.name === with_people);
+        let person = resp.data.results.find(actor => actor.name.toUpperCase() === with_people.toUpperCase());
         if(!person){
-            return null;
+
+            if(resp.data.total_results < 6){
+                person = resp.data.results[0];
+            } else{
+                return null;
+            }  
         }
 
         return person.id;
     }
+
+    
 
 
     await Promise.all(

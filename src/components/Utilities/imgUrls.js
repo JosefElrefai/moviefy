@@ -1,0 +1,1 @@
+export const defaultPosterURL = 'https://media.comicbook.com/files/img/default-movie.png?auto=webp';
