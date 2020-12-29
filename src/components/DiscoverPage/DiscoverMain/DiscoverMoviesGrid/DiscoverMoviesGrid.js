@@ -1,24 +1,16 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
-import Slide from '../../../Utilities/Slide';
-import movieDB from '../../../../apis/movieDB';
 import { connect } from 'react-redux';
 
+import Slide from '../../../Utilities/Slide';
+import getRespApiValues from './getRespondingApiValues';
 
 const DiscoverMovies = () => {
     const imgBaseURL = useRef('https://image.tmdb.org/t/p/w342');
     const [moviesFetched, setMoviesFetched] = useState(false);
     const queryString = useLocation().search;
     const movieSearchValues = useRef( { sort_by: 'popular', people_inv: '', genres: '', key_words: '' } );
-
-
-    const respondingApiValues = {
-        sort_by: '',
-        people_inv: '',
-        genres: '',
-        key_words: ''
-    };
+    const respApiValues = useRef( {} );
 
     // const getRespondingApiValues = {
     //     getKeywordId: async (query) => {
@@ -47,9 +39,10 @@ const DiscoverMovies = () => {
         console.log(movieSearchValues.current);
 
         (async () => {
-            const keywordId = await getRespondingApiValues.getKeywordId(movieSearchValues.current.key_words);
-            console.log(keywordId);
-            })();
+            respApiValues.current = await getRespApiValues(movieSearchValues.current);
+            console.log(respApiValues.current);
+        })();
+        
 
     }, [queryString]);
 
