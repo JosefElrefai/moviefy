@@ -2,8 +2,9 @@ import movieDB from '../../../../apis/movieDB';
 
 export default async ( movieSearchValues ) => {
 
-    const { sort_by, people_inv, genres, key_words } = movieSearchValues;
-    const respAPiValues = {};
+    const { sort_by, with_people, genres, with_keywords } = movieSearchValues;
+    console.log(movieSearchValues);
+    const respAPiValues = { sort_by };
 
     const getKeywordId = async (query) => {
         const resp = await movieDB.get('/search/keyword', {
@@ -17,7 +18,7 @@ export default async ( movieSearchValues ) => {
             return null;
         }
 
-        return resp.data.results.find(kWord => kWord.name === key_words).id;
+        return resp.data.results.find(kWord => kWord.name === with_keywords).id;
     }
 
     const getPersonID = async (query) => {
@@ -32,14 +33,14 @@ export default async ( movieSearchValues ) => {
             return null;
         }
 
-        return resp.data.results.find(person => person.name.toUpperCase() === people_inv.toUpperCase()).id;
+        return resp.data.results.find(person => person.name.toUpperCase() === with_people.toUpperCase()).id;
     }
 
 
     await Promise.all(
         [
-            !!key_words && ( respAPiValues.key_words = await getKeywordId(key_words) ),
-            !!people_inv && ( respAPiValues.people_inv = await getPersonID(people_inv))
+            !!with_keywords && ( respAPiValues.with_keywords = await getKeywordId(with_keywords) ),
+            !!with_people && ( respAPiValues.with_people = await getPersonID(with_people))
         ]
     );
 

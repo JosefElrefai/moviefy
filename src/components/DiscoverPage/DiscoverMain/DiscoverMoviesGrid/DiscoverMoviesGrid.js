@@ -3,52 +3,40 @@ import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Slide from '../../../Utilities/Slide';
+import { fetchDiscoverMovies } from '../../../../actions/fetchDiscover';
 import getRespApiValues from './getRespondingApiValues';
 
-const DiscoverMovies = () => {
+
+const DiscoverMovies = (props) => {
     const imgBaseURL = useRef('https://image.tmdb.org/t/p/w342');
     const [moviesFetched, setMoviesFetched] = useState(false);
     const queryString = useLocation().search;
-    const movieSearchValues = useRef( { sort_by: 'popular', people_inv: '', genres: '', key_words: '' } );
+    const movieSearchValues = useRef( { sort_by: 'popularity.desc', with_people: '', genres: '', with_keywords: '' } );
     const respApiValues = useRef( {} );
-
-    // const getRespondingApiValues = {
-    //     getKeywordId: async (query) => {
-    //         const resp = await movieDB.get('/search/keyword', {
-    //             params: {
-    //                 api_key: process.env.REACT_APP_API_KEY,
-    //                 query: query
-    //             }
-    //         });
-
-    //         if( resp.data.total_results === 0 ){
-    //             return null;
-    //         }
-
-    //         return resp.data.results.find(k => k.name === movieSearchValues.current.key_words).id;
-    //     }
-    // };
 
     useEffect(() => {   //Gets new search params and stores them in movieSearchValues
         const searchParams = new URLSearchParams(queryString);
-
+        movieSearchValues.current = {};
         for (const [key, value] of searchParams) {
 
             movieSearchValues.current[key] = value;
         }
         console.log(movieSearchValues.current);
+        
 
         (async () => {
             respApiValues.current = await getRespApiValues(movieSearchValues.current);
             console.log(respApiValues.current);
+            props.fetchDiscoverMovies(respApiValues.current);
         })();
+        
         
 
     }, [queryString]);
 
 
     const renderMovies = () => {
-        
+    
     }
 
     return (
@@ -79,4 +67,4 @@ const mapStateToProps = (state) => {
     return { discoverMovies: state.discoverMovies };
 }
 
-export default connect(mapStateToProps)(DiscoverMovies);
+export default connect(mapStateToProps, { fetchDiscoverMovies })(DiscoverMovies);

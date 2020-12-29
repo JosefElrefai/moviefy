@@ -6,10 +6,10 @@ const MoviesForm = () => {
     const history = useHistory(); //put history in file
 
     //default form values, keys must be equal to name tag of responding element
-    const [formValues, setFormValues] = useState( { sort_by: '', people_inv: '', genres: '', key_words: ''  } );
+    const [formValues, setFormValues] = useState( { sort_by: '', with_people: '', genres: '', with_keywords: ''  } );
 
     const clearFormValues = () => {
-            setFormValues( { sort_by: '', people_inv: '', genres: '', key_words: ''} )
+            setFormValues( { sort_by: '', with_people: '', genres: '', with_keywords: ''} )
     }
 
     const calcURLSearchStr = () => {
@@ -47,9 +47,9 @@ const MoviesForm = () => {
 
             <input
                 type="text"
-                name="people_inv"
+                name="with_people"
                 placeholder="People inv."
-                value={formValues.people_inv}
+                value={formValues.with_people}
                 onChange={handleFormChange}
                 autoComplete="off"
                 className="form-comp"
@@ -67,9 +67,9 @@ const MoviesForm = () => {
 
             <input
                 type="text"
-                name="key_words"
+                name="with_keywords"
                 placeholder="Keywords"
-                value={formValues.key_words}
+                value={formValues.with_keywords}
                 onChange={handleFormChange}
                 autoComplete="off"
                 className="form-comp"
