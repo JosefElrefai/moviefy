@@ -9,7 +9,6 @@ export const fetchDiscoverMovies = (searchParams) => async (dispatch) => { // Me
     };
 
     const totParams = { ...staticParams, ...searchParams };
-    console.log(totParams);
     const resp = await movieDB.get('/discover/movie', { params: totParams });
 
     dispatch({ type: GET_DISCOVER, payload: resp.data.results });

@@ -42,6 +42,9 @@
         }
     }
 
+
+
+        
     .discover-grid{
         background: #222;
         display: grid;
@@ -61,4 +64,11 @@
             justify-self: center;
         }
     }
+
+    .discover-pages{
+        background: #222;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+    
 }

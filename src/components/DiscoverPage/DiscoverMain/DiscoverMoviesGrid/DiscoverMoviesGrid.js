@@ -21,18 +21,13 @@ const DiscoverMovies = (props) => {
         for (const [key, value] of searchParams) {
 
             movieSearchValues.current[key] = value;
-        }
-        console.log(movieSearchValues.current);
-        
+        }        
         
         (async () => {
             respApiValues.current = await getRespApiValues(movieSearchValues.current);
             console.log(respApiValues.current);
             props.fetchDiscoverMovies(respApiValues.current);
         })();
-        
-        
-
     }, [queryString]);
 
 
@@ -49,11 +44,10 @@ const DiscoverMovies = (props) => {
     return (
 
         <Fragment>
-            
             <div className="discover-grid" >
                 { renderMovies() }
             </div>
-
+            <p className="discover-pages" >1 2 3</p>
         </Fragment>
     );
     

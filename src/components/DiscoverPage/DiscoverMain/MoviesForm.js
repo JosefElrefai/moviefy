@@ -45,7 +45,7 @@ const MoviesForm = () => {
                 <option value="release_date.desc" >Release Date</option>
             </select>
 
-            <select name="with_genres" value={formValues.with_genres} onChange={handleFormChange} className="form-comp" >
+            <select name="with_genres" value={formValues.with_genres} onChange={handleFormChange} className="form-comp"  >
                 <option value="">Genres</option>
                 <option value="28">Action</option>
                 <option value="12">Adventure</option>
@@ -65,7 +65,6 @@ const MoviesForm = () => {
                 <option value="53">Thriller</option>
                 <option value="10752">War</option>
                 <option value="37">Western</option>
-                
             </select>
             
             <input
