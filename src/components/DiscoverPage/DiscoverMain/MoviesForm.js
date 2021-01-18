@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import AutoCmpltTxt from '../../Utilities/AutoCmpltTxt';
+import movieDB from '../../../apis/movieDB';
+
 const MoviesForm = () => {
 
     const history = useHistory(); //put history in file
@@ -32,7 +35,11 @@ const MoviesForm = () => {
 
     const handleFormChange = (e) => {
         setFormValues( { ...formValues, [e.target.name]: e.target.value } );
-    }
+    };
+
+    const getSuggestionList = (query) => {
+        
+    };
 
     return (
         <form onSubmit={handleSubmit} className="discover-form" > 
@@ -67,25 +74,19 @@ const MoviesForm = () => {
                 <option value="37">Western</option>
             </select>
             
-            <input
-                type="text"
-                name="with_people"
-                placeholder="People inv."
-                value={formValues.with_people}
-                onChange={handleFormChange}
-                autoComplete="on"
-                className="form-comp"
-            ></input>
-
-            {/* <input
-                type="text"
-                name="with_genres"
-                placeholder="with_genres"
-                value={formValues.with_genres}
-                onChange={handleFormChange}
-                autoComplete="off"
-                className="form-comp"
-            ></input> */}
+            <AutoCmpltTxt  >
+                {() => (
+                    <input
+                        type="text"
+                        name="with_people"
+                        placeholder="People inv."
+                        value={formValues.with_people}
+                        onChange={handleFormChange}
+                        autoComplete="on"
+                        className="form-comp"
+                    ></input>
+                )}
+            </AutoCmpltTxt>
 
             <input
                 type="text"
