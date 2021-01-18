@@ -73,7 +73,7 @@ const MoviesForm = () => {
                 placeholder="People inv."
                 value={formValues.with_people}
                 onChange={handleFormChange}
-                autoComplete="off"
+                autoComplete="on"
                 className="form-comp"
             ></input>
 
