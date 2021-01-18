@@ -22,6 +22,14 @@ export default (props) => {
 
     }, [props.inputValue]);
 
+    const renderSuggestions = (suggestions) => {
+        if (suggestions.length === 0) return null;
+        return (
+            <ul>
+                {suggestions.map( suggestion => <li>{suggestion}</li> )}
+            </ul>
+        );
+    }
 
     return (
         <Fragment>
