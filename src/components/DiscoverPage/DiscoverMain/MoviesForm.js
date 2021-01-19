@@ -37,8 +37,14 @@ const MoviesForm = () => {
         setFormValues( { ...formValues, [e.target.name]: e.target.value } );
     };
 
-    const getSuggestionList = (query) => {
-        
+    const getActorSuggestions = async (query) => {
+        const resp = await movieDB.get('search/person', {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                query: query
+            }
+        });
+        return resp.data.results.map(person => person.name);
     };
 
     return (
@@ -74,7 +80,7 @@ const MoviesForm = () => {
                 <option value="37">Western</option>
             </select>
             
-            <AutoCmpltTxt  >
+            <AutoCmpltTxt getSuggestionList={getActorSuggestions} inputValue={formValues.with_people} >
                 {() => (
                     <input
                         type="text"

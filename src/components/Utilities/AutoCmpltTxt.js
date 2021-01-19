@@ -1,31 +1,34 @@
-import { Fragment, useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { Fragment, useEffect, useState } from 'react';
 
-import movieDB from '../../apis/movieDB';
-
-export default (props) => {
+const AutoCmpltTxt = (props) => {
 
     const [suggestions, setSuggestions] = useState([]);
+    const { inputValue } = props;
     
     useEffect(() => {
         const timeOutId = setTimeout(() => {
-            if(props.inputValue < 2){
+            if(inputValue < 2){
                 (suggestions.length !== 0) && setSuggestions([]);
             }
-            else setSuggestions(props.getSuggestionList(props.inputValue));
+            else {
+                (async () => {
+                    const suggList = await props.getSuggestionList(inputValue);
+                    setSuggestions(suggList);
+                })();
+            }
         }, 500);
         
         return () => {
             clearTimeout(timeOutId);
         };
 
-    }, [props.inputValue]);
+    }, [inputValue]);
 
     const renderSuggestions = () => {
         if (suggestions.length === 0) return null;
         return (
             <ul>
-                {suggestions.map( suggestion => <li>{suggestion}</li> )}
+                {suggestions.map( suggestion => <li key={suggestion} >{suggestion}</li> )}
             </ul>
         );
     }
@@ -34,6 +37,8 @@ export default (props) => {
         <Fragment>
             {props.children()}
             {renderSuggestions()}
-        </Fragment>
+       </Fragment>
     );
 }
+
+export default AutoCmpltTxt;
