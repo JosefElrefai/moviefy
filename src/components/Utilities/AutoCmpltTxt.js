@@ -11,9 +11,10 @@ const AutoCmpltTxt = (props) => {
     const containerRef = useRef();
     const skipSuggestions = useRef(false);
 
-    //calculates suggestions
+    //calculates suggestions & throttles API requests
     useEffect(() => {
         if(skipSuggestions.current) return skipSuggestions.current = false;
+
         const timeOutId = setTimeout(() => {
             if(inputValue.length < 3){
                 (suggestions.length !== 0) && setSuggestions([]);
@@ -53,10 +54,23 @@ const AutoCmpltTxt = (props) => {
             e.preventDefault();
             const focusedElement = document.activeElement; 
 
-            e.code === 'ArrowUp' ? 
-            (focusedElement.previousElementSibling && focusedElement.previousElementSibling.focus()) 
-            : (focusedElement.nextElementSibling && focusedElement.nextElementSibling.focus());
+            if(e.code === 'ArrowUp') {
+                focusedElement.previousElementSibling ?
+                focusedElement.previousElementSibling.focus()
+                : focusedElement.parentElement.parentElement.firstChild.focus(); //focus back at input
+
+            } else focusedElement.nextElementSibling && focusedElement.nextElementSibling.focus();
+            
         }
+    }
+
+    const handleContKeyD = (e) => {
+        console.log(e)
+        if(e.target.localName === 'li') return;
+        if(e.code === 'ArrowDown'){
+            e.preventDefault();
+            e.target.nextElementSibling && e.target.nextElementSibling.firstChild.focus();
+        } 
     }
 
     const renderSuggestions = () => {
@@ -73,15 +87,14 @@ const AutoCmpltTxt = (props) => {
                         key={sugg}
                         css={suggCSS}
                         tabIndex="0"
-                        onMouseEnter={(e) => focusSugg(e)}>
-                    {sugg}</li>
+                        onMouseEnter={(e) => focusSugg(e)}> {sugg} </li>
                 ))}
             </Dropdown>
         );
     }
 
     return (
-        <span ref={containerRef} css={containerCSS} className={props.className}>
+        <span ref={containerRef} css={containerCSS} className={props.className} onKeyDown={(e) => handleContKeyD(e)} >
             {props.children()} {/* input element, controlled outside this component*/}
             {renderSuggestions()}
        </span>
