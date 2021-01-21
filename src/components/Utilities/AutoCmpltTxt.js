@@ -9,10 +9,13 @@ const AutoCmpltTxt = (props) => {
     const [suggestions, setSuggestions] = useState([]);
     const { inputValue } = props;
     const containerRef = useRef();
-    
+    const skipSuggestions = useRef(false);
+
+    //calculates suggestions
     useEffect(() => {
+        if(skipSuggestions.current) return skipSuggestions.current = false;
         const timeOutId = setTimeout(() => {
-            if(inputValue < 2){
+            if(inputValue.length < 3){
                 (suggestions.length !== 0) && setSuggestions([]);
             }
             else {
@@ -29,6 +32,33 @@ const AutoCmpltTxt = (props) => {
 
     }, [inputValue]);
 
+
+    const focusSugg = (e) => {
+        e.target.focus();
+    }
+
+    const selectSugg = () => { //selects focused sugg
+        props.changeInputV(document.activeElement.innerText);
+        skipSuggestions.current = true;
+        setSuggestions([]);
+    }
+
+    const handleDrpDKeyP = (e) => {
+        console.log(e)
+        if (e.code === 'Enter'){
+            return selectSugg();
+        }
+
+        if(e.code === 'ArrowUp' || e.code === 'ArrowDown' ){
+            e.preventDefault();
+            const focusedElement = document.activeElement; 
+
+            e.code === 'ArrowUp' ? 
+            (focusedElement.previousElementSibling && focusedElement.previousElementSibling.focus()) 
+            : (focusedElement.nextElementSibling && focusedElement.nextElementSibling.focus());
+        }
+    }
+
     const renderSuggestions = () => {
         if (suggestions.length === 0) return null;
         
@@ -37,8 +67,15 @@ const AutoCmpltTxt = (props) => {
 
         const inputHeigth = containerRef.current.children[0].offsetHeight;
         return (
-            <Dropdown inptHeight={inputHeigth} >
-                {showSugg.map( sugg => <li key={sugg} >{sugg}</li> )}
+            <Dropdown inptHeight={inputHeigth} onKeyDown={(e) => handleDrpDKeyP(e) } >
+                {showSugg.map(sugg => (
+                    <li
+                        key={sugg}
+                        css={suggCSS}
+                        tabIndex="0"
+                        onMouseEnter={(e) => focusSugg(e)}>
+                    {sugg}</li>
+                ))}
             </Dropdown>
         );
     }
@@ -54,16 +91,28 @@ const AutoCmpltTxt = (props) => {
 const containerCSS = css`
     position: relative;
     display: inline-block;
-
+    
 `;
 
 const Dropdown = styled.ul`
     position: absolute;
     width: 100%;
     left: 0;
-    top: ${props => props.inptHeight}px;
+    top: calc(${props => props.inptHeight}px + 4px);
     background: #131517;
     border: .5px solid grey;
+    border-radius: 3px;
+    box-shadow: 0px 2px 10px #111;
+    text-align: left;
+`;
+
+const suggCSS = css`
+    padding: .3rem .2rem;
+    font-size: .9rem;
+    &:focus{
+        background: red;
+        outline: none;
+    }
 `;
 
 export default AutoCmpltTxt;

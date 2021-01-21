@@ -37,6 +37,10 @@ const MoviesForm = () => {
         setFormValues( { ...formValues, [e.target.name]: e.target.value } );
     };
 
+    const changeInputValue = (v) => {
+        setFormValues({...formValues, 'with_people': v});
+    }
+
     const getActorSuggestions = async (query) => {
         const resp = await movieDB.get('search/person', {
             params: {
@@ -81,7 +85,12 @@ const MoviesForm = () => {
             </select>
             
 
-            <AutoCmpltTxt getSuggestionList={getActorSuggestions} inputValue={formValues.with_people} className="auto-input-container" >
+            <AutoCmpltTxt
+                getSuggestionList={getActorSuggestions}
+                inputValue={formValues.with_people}
+                changeInputV={changeInputValue}
+                className="auto-input-container"
+            >
                 {() => (
                     <input
                         type="text"
