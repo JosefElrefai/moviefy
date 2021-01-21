@@ -16,6 +16,23 @@
         text-align: center;
         margin-bottom: 4rem;
 
+
+        >.auto-input-container{
+            margin: 1rem;
+            >.auto-input{
+                background: #131517;
+                color: set-text-color(#131517);
+                border: none;
+                border-bottom: 1px solid white;
+                outline: none;
+                padding: .5rem 0;
+    
+                &::placeholder{
+                    color: #aaa;
+                }
+            }
+        }
+
         >.form-comp{
             background: #131517;
             color: set-text-color(#131517);

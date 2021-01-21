@@ -80,7 +80,8 @@ const MoviesForm = () => {
                 <option value="37">Western</option>
             </select>
             
-            <AutoCmpltTxt getSuggestionList={getActorSuggestions} inputValue={formValues.with_people} >
+
+            <AutoCmpltTxt getSuggestionList={getActorSuggestions} inputValue={formValues.with_people} className="auto-input-container" >
                 {() => (
                     <input
                         type="text"
@@ -88,11 +89,12 @@ const MoviesForm = () => {
                         placeholder="People inv."
                         value={formValues.with_people}
                         onChange={handleFormChange}
-                        autoComplete="on"
-                        className="form-comp"
+                        autoComplete="off"
+                        className="auto-input"
                     ></input>
                 )}
             </AutoCmpltTxt>
+
 
             <input
                 type="text"
