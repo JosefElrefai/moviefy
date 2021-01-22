@@ -2,9 +2,9 @@ import movieDB from '../../../../apis/movieDB';
 
 export default async ( movieSearchValues ) => {
 
-    const { sort_by, with_people, with_genres, with_keywords } = movieSearchValues;
+    const { sort_by, with_people, with_genres, with_keywords, page } = movieSearchValues;
     console.log(movieSearchValues);
-    const respAPiValues = { sort_by, with_genres };
+    const respAPiValues = { sort_by, with_genres, page };
 
     const getKeywordId = async (query) => {
         const resp = await movieDB.get('/search/keyword', {
