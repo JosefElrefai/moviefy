@@ -116,7 +116,7 @@ const MoviesForm = () => {
             ></input>
 
 
-            <button className="form-comp submit" >
+            <button className="button-primary" >
                 FIND
             </button>
         </form>

@@ -53,8 +53,34 @@ input[type=text]{
 
 button{
     outline: none;
-    
     &:hover{
         cursor: pointer;
+    }
+}
+
+.button-primary{
+    width: 6rem;
+    padding: .5rem 0;
+    margin: 1rem;
+    background: $secondary-color;
+    color: white;
+    
+    border: 1px double $secondary-color;
+    border-radius: 2px;
+}
+
+.button-primary-big{
+    width: 7.5rem;
+    height: 2.5rem;
+    padding: .5rem 0;
+    margin: 1rem;
+    background: $secondary-color;
+    color: white;
+    letter-spacing: 1px;
+    border: none;
+    
+    &:hover{
+        background: white;
+        color: black;
     }
 }

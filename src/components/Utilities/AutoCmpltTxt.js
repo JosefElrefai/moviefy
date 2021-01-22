@@ -75,6 +75,7 @@ const AutoCmpltTxt = (props) => {
 
         }
         if(containerRef.current.children[1] && containerRef.current.children[1].contains(document.activeElement)){
+            if([38,40].includes(e.keyCode)) return;
             containerRef.current.children[0].focus();
         }
     }
@@ -87,20 +88,14 @@ const AutoCmpltTxt = (props) => {
         } 
     }
 
-    const onDrpDwnBlur = (e) => {
-        console.log(e.target)
-    }
-
     const renderSuggestions = () => {
         if (suggestions.length === 0) return null;
 
-
         const uniqSugg = _.uniq(suggestions);
         const showSugg = uniqSugg.filter((v, i) => i < 8);
-
         const inputHeigth = containerRef.current.children[0].offsetHeight;
         return (
-            <Dropdown inptHeight={inputHeigth} onKeyDown={(e) => handleDrpDKeyP(e) } onClick={() => selectSugg()} on    ={(e) => onDrpDwnBlur(e)} >
+            <Dropdown inptHeight={inputHeigth} onKeyDown={(e) => handleDrpDKeyP(e) } onClick={() => selectSugg()} >
                 {showSugg.map(sugg => (
                     <li
                         key={sugg}

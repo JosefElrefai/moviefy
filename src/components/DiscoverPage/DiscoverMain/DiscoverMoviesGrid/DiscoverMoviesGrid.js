@@ -47,7 +47,10 @@ const DiscoverMovies = (props) => {
             <div className="discover-grid" >
                 { renderMovies() }
             </div>
-            <p className="discover-pages" >1 2 3</p>
+            <div className="discover-pages" >
+                <button className="button-primary-big" >◀ PREV</button>
+                <button className="button-primary-big" >NEXT ▶</button>
+            </div>
         </Fragment>
     );
     

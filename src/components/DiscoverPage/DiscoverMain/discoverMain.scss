@@ -47,16 +47,6 @@
             }
         }
 
-        >.submit{
-            width: 6rem;
-            background: $secondary-color;
-            color: white;
-            
-            border: 1px double $secondary-color;
-            border-radius: 2px;
-            
-
-        }
     }
 
 
@@ -68,7 +58,7 @@
         grid-template-columns: repeat(5, 1fr);
         justify-content: space-between;
         gap: 2rem 0;
-        padding: 2.5rem 1rem;
+        padding: 2.5rem 1rem 1rem 1rem;
 
         >*{
             justify-self: center;
