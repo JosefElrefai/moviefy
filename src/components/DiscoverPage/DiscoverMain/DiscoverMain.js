@@ -4,6 +4,7 @@ import UnderLine from '../../Utilities/ShortUnderLine';
 import './discoverMain.scss';
 import MoviesForm from './MoviesForm';
 import DiscoverMoviesGrid from './DiscoverMoviesGrid/DiscoverMoviesGrid';
+import Loader from '../../Utilities/Loader/Loader';
 
 const DiscoverMain = () => { 
 
@@ -17,8 +18,9 @@ const DiscoverMain = () => {
 
                 <MoviesForm /> {/* Changes URL so that discoverMovies shows right movies */}
 
-                <DiscoverMoviesGrid /> {/* Uses URL to fetch right movies */}
-
+               { /*<DiscoverMoviesGrid /> {/* Uses URL to fetch right movies ENDCOMMENT}*/}
+                <Loader />
+                
             </div>
         </div>
     );
