@@ -18,9 +18,8 @@ const DiscoverMain = () => {
 
                 <MoviesForm /> {/* Changes URL so that discoverMovies shows right movies */}
 
-               { /*<DiscoverMoviesGrid /> {/* Uses URL to fetch right movies ENDCOMMENT}*/}
-                <Loader />
-                
+               <DiscoverMoviesGrid /> {/* Uses URL to fetch right movies */}
+
             </div>
         </div>
     );

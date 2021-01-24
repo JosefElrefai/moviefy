@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Slide from '../../../Utilities/Slide';
 import { fetchDiscoverMovies } from '../../../../actions/fetchDiscover';
 import getRespApiValues from './getRespondingApiValues';
+import Loader from '../../../Utilities/Loader/Loader';
 
 
 const DiscoverMovies = (props) => {
@@ -17,6 +18,8 @@ const DiscoverMovies = (props) => {
     const respApiValues = useRef( {} );
 
     useEffect(() => {   //Gets new search params and stores them in movieSearchValues
+        setFetching(true);
+        setTimeout(() => setFetching(false),500);
         const searchParams = new URLSearchParams(queryString);
         movieSearchValues.current = {};
         for (const [key, value] of searchParams) {
@@ -59,8 +62,7 @@ const DiscoverMovies = (props) => {
         ));
     }
 
-    return (
-
+    return !fetching ? (
         <Fragment>
             <div className="discover-grid" >
                 { renderMovies() }
@@ -70,7 +72,8 @@ const DiscoverMovies = (props) => {
                 <button className="button-primary-big" onClick={goNextPage} >NEXT ▶</button>
             </div>
         </Fragment>
-    );
+    )
+    : ( <Loader />);
     
 }
 
