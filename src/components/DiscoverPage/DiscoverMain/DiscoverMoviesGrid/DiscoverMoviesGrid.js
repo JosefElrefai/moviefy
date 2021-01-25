@@ -19,7 +19,7 @@ const DiscoverMovies = (props) => {
 
     useEffect(() => {   //Gets new search params and stores them in movieSearchValues
         setFetching(true);
-        setTimeout(() => setFetching(false),500);
+        setTimeout(() => setFetching(false),300);
         const searchParams = new URLSearchParams(queryString);
         movieSearchValues.current = {};
         for (const [key, value] of searchParams) {

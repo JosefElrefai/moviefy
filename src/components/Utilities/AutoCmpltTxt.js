@@ -36,14 +36,15 @@ const AutoCmpltTxt = (props) => {
     //handles clicks outside dropDown
     useEffect(() => {
         const handleClickOutside = (e) => {
+            if(e.target.localName === 'a') return;
             if(!containerRef.current.contains(e.target)){
                 setSuggestions([]);
             }
         };
 
-        document.addEventListener('click', (e) => handleClickOutside(e));
+        document.addEventListener('click', handleClickOutside);
         return () => {
-            document.removeEventListener('click', (e) => handleClickOutside(e))
+            document.removeEventListener('click', handleClickOutside)
         };
     }, [])
 

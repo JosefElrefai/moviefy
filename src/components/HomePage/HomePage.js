@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
+import './homePage.scss';
 import Header from './Header/Header';
 import HomeMain from './HomeMain/HomeMain';
 import Footer from '../Utilities/Footer/Footer';
+import Loader from '../Utilities/Loader/Loader'
 import { fetchMoviesTopRated, fetchMoviesUpcoming, fetchMoviesPopular, fetchMoviesGenres, fetchMoviesNowPlaying } from '../../actions/fetchMovies';
 import { fetchTvPopular, fetchTvGenres, fetchTvAiringToday, fetchTvOnAir, fetchTvTopRated } from '../../actions/fetchTV';
 
@@ -67,7 +69,11 @@ class HomePage extends React.Component {
                 <HomeMain />
                 <Footer />
             </Fragment>
-        ) : null;
+        ) : (
+            <div className="loader-container" >
+                <Loader />
+            </div>
+        ) ;
     }
 }
 
